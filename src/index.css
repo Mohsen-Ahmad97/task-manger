@@ -1,0 +1,16 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+ 
+}
+.border{
+  border: 2px solid red ;
+}
+body{
+  background-color: black;
+}
+.ant-form-item .ant-form-item-label > label{
+  color: rgb(228, 222, 222);
+  font-weight: bold;
+}

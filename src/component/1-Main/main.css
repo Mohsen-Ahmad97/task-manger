@@ -1,0 +1,12 @@
+.main{
+    width: 400px;
+    height: 100vh;
+    margin: 50px auto;
+    background-color: rgb(37, 37, 37);
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 20px;
+
+}
