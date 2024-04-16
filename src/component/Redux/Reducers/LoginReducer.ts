@@ -1,14 +1,14 @@
-import { DATA_LOGIN, ERRO_LOGIN, FAILD_LOGIN } from "../Actions/Actions";
+import { DATA_LOGIN, ERRO_LOGIN } from "../Actions/Actions";
 import { GET_DATA_LOGIN } from "./../Actions/Actions";
 
 interface state {
-  messageLogin ?: string;
-  isSuccess ?: Boolean;
+  messageLogin?: string;
+  isSuccess?: Boolean;
   isLoading: boolean;
 }
 
 const initial: state = {
-  messageLogin : "",
+  messageLogin: "",
   isSuccess: false,
   isLoading: false,
 };
@@ -23,17 +23,14 @@ const loginReducer = (state = initial, action: any) => {
     case DATA_LOGIN:
       return {
         ...state,
-        isLoading: true,
+        isLoading: false,
         isSuccess: action.response.Code === 200,
+        messageLogin: action.response.Message,
+       
       };
-    case FAILD_LOGIN:
-      return {
-        ...state,
-        isLoading:false,
-        messageLogin : action.response.data.Message,
-      };
+   
     case ERRO_LOGIN:
-      return { ...state, err: action.err };
+      return { ...state, err: action.err, isLoading: false };
     default:
       return state;
   }

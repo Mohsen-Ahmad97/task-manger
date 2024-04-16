@@ -1,24 +1,36 @@
-import { DATA_RESET_PASSWORD, ERRO_RESET_PASSWORD } from "../Actions/Actions";
+import {
+  DATA_RESET_PASSWORD,
+  ERRO_RESET_PASSWORD,
+  GET_DATA_RESET_PASSWORD,
+} from "../Actions/Actions";
 
 interface init {
-    payload: string;
-  
+  messageresetpassword: string;
+  messageWrongCode?:string,
+  isLoading: boolean;
+}
+
+const initial: init = {
+  messageresetpassword: "",
+  messageWrongCode:"",
+  isLoading: false,
+};
+
+const ResetPassordReducer = (state = initial, action: any) => {
+  switch (action.type) {
+    case GET_DATA_RESET_PASSWORD:
+      return { ...state, isLoading: true };
+    case DATA_RESET_PASSWORD:
+      return {
+        ...state,
+        messageresetpassword: action.data.Message,
+        messageWrongCode:action.data.data.Message,
+        isLoading: false,
+      };
+    case ERRO_RESET_PASSWORD:
+      return { ...state, err: action.err, isLoading: false };
+    default:
+      return state;
   }
-  
-  const initial: init = {
-    payload: ""
-  
-  };
-  
-  const ResetPassordReducer = (state = initial, action: any) => {
-    switch (action.type) {
-      case DATA_RESET_PASSWORD:
-        return { ...state, payload: action.data.Message };
-      case ERRO_RESET_PASSWORD:
-        return { ...state, err: action.err };
-      default:
-        return state;
-    }
-  };
-  export default ResetPassordReducer;
-  
+};
+export default ResetPassordReducer;

@@ -20,7 +20,7 @@ const ConfirmEmail = () => {
   const [form] = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { message, isLoading, isSuccess,resendMessage } = useSelector(
+  const { message, isLoading, isSuccess,resendMessage,  messagewrong } = useSelector(
     (state: any) => state.conf
   );
   
@@ -45,6 +45,7 @@ const ConfirmEmail = () => {
     <Space direction="vertical">
       {message && <Alert message={message} type="success" />}
       {resendMessage && <Alert message={t("resendMessage")} type="success" />}
+      {messagewrong && <Alert message={messagewrong} type="success" />}
       <Spin spinning={isLoading}>
         <Form
           form={form}

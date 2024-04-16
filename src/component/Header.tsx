@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <div style={{ textAlign: "center", margin: "20px auto" }}>
       <Select
-        defaultValue="language"
+        defaultValue={t("language")}
         style={{ width: 120 }}
         onChange={handleChange}
       >

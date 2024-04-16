@@ -1,6 +1,7 @@
 import axios from "axios";
 import { FieldType } from "../5-Employees/AddEmployees";
 import { FieldType1 } from "../5-Employees/UpdateEmployee";
+import api from "./Api";
 interface data {
   Id: number;
   FirstName: string;
@@ -14,31 +15,34 @@ interface employee {
   Message: string;
   Result?: Boolean;
   Data?: data[];
+  response?:any
 }
 export class Employee {
   static async getEmployee(): Promise<employee> {
-    return await axios
+    return await api
       .get(
-        "https://task-follow-up.v2202305135856227727.ultrasrv.de/api/Employee/Employees",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
+        "/api/Employee/Employees",
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: "Bearer " + localStorage.getItem("token"),
+        //   },
+        // }
       )
       .then(function (response) {
         let result: employee = response.data;
+        console.log("responseemployee",result)
         return result;
       })
       .then((error) => {
-        console.log(error);
-        return error;
+      
+        console.log("erroremployee",error.response.data);
+        return error.response.data;
       });
   }
 
   static async addEmployee(mode: FieldType): Promise<employee> {
-    return await axios
+    return await api
       .post(
         "https://task-follow-up.v2202305135856227727.ultrasrv.de/api/Employee/AddEmployee",
         {

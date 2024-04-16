@@ -28,10 +28,9 @@ const Employees = () => {
   useEffect(() => {
     dispatch(takegetEmployee());
   }, [dispatch]);
-  const employee = useSelector((state: any) => state.getempl.payload);
-  const { messageaddemployee, messagupdateemployee, isLoading } = useSelector(
-    (state: any) => state.getempl
-  );
+
+  const { messageaddemployee, messagupdateemployee, isLoading, employee } =
+    useSelector((state: any) => state.getempl);
   // console.log("em",employee);
   const showModal = () => {
     setOpen(true);

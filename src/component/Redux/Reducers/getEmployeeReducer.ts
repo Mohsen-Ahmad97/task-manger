@@ -8,14 +8,14 @@ import {
 } from "../Actions/Actions";
 
 interface State {
-  payload: employee[];
+  employee : employee[];
   MessageUpdate: string;
   Message: string;
   isLoading: boolean;
 }
 
 const initial: State = {
-  payload: [],
+  employee : [],
   MessageUpdate: "",
   Message: "",
   isLoading: false,
@@ -26,13 +26,13 @@ const getEmployeeReducer = (state = initial, action: any) => {
     case GET_DATA_EMPLOYEE:
       return { ...state, isLoading: true };
     case DATA_EMPLOYEE:
-      return { ...state, payload: action.data.Data, isLoading: false };
+      return { ...state, employee : action.data.Data, isLoading: false };
     case ERRO_EMPLOYEE:
-      return { ...state, err: action.err };
+      return { ...state, err: action.err,isLoading: false };
     case DATA_ADD_EMPLOYEE:
-      return { ...state, Message: action.data.Message };
+      return { ...state, Message: action.data.Message,isLoading: false };
     case DATA_UPDATE_EMPLOYEE:
-      return { ...state, MessageUpdate: action.data.Message };
+      return { ...state, MessageUpdate: action.data.Message,isLoading: false };
     default:
       return state;
   }

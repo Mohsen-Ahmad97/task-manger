@@ -45,5 +45,7 @@
   "No":"لا ",
   "messageaddemployee":"تم اضافة بنجاح",
   "messagupdateemployee":"تم التعديل بنجاح",
-  "messageForgetPassword":"ارسلنا رمز التأكيد الى ايميل الخاص بك لاعادة تععين كلمة السر"
+  "messageForgetPassword":"ارسلنا رمز التأكيد الى ايميل الخاص بك لاعادة تععين كلمة السر",
+  "messageWrongCode":"خطا رمز التأكيد",
+  "language":" اللغة"
 }
