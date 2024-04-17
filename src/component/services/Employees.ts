@@ -2,7 +2,7 @@ import axios from "axios";
 import { FieldType } from "../5-Employees/AddEmployees";
 import { FieldType1 } from "../5-Employees/UpdateEmployee";
 import api from "./Api";
-interface data {
+ interface data {
   Id: number;
   FirstName: string;
   LastName: string;
@@ -10,11 +10,11 @@ interface data {
   EmployeeTeam: [];
   EmployeeMissions: [];
 }
-interface employee {
+ export interface employee {
   Code: number;
   Message: string;
-  Result?: Boolean;
-  Data?: data[];
+  Result: Boolean;
+  Data: data[];
   response?:any
 }
 export class Employee {
@@ -44,18 +44,18 @@ export class Employee {
   static async addEmployee(mode: FieldType): Promise<employee> {
     return await api
       .post(
-        "https://task-follow-up.v2202305135856227727.ultrasrv.de/api/Employee/AddEmployee",
+        "/api/Employee/AddEmployee",
         {
           FirstName: mode.firstName,
           LastName: mode.lastName,
           Email: mode.email,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: "Bearer " + localStorage.getItem("token"),
+        //   },
+        // }
       )
       .then(function (response) {
         let result: employee = response.data;
@@ -69,18 +69,18 @@ export class Employee {
   static async updateEmployee(mode: FieldType1): Promise<employee> {
     return await axios
       .post(
-        "https://task-follow-up.v2202305135856227727.ultrasrv.de/api/Employee/UpdateEmployee",
+        "/api/Employee/UpdateEmployee",
         {
           FirstName: mode.firstName,
           LastName: mode.lastName,
           id: mode.id,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: "Bearer " + localStorage.getItem("token"),
+        //   },
+        // }
       )
       .then(function (response) {
         let result: employee = response.data;
@@ -94,16 +94,16 @@ export class Employee {
   static async deleteEmployee(id:number) {
     return await axios
       .post(
-        "https://task-follow-up.v2202305135856227727.ultrasrv.de/api/Employee/DeleteEmployee",
+        "/api/Employee/DeleteEmployee",
         {
           Id:id
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: "Bearer " + localStorage.getItem("token"),
+        //   },
+        // }
       )
       .then(function (response) {
         let result = response.data;

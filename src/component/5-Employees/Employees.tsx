@@ -31,7 +31,7 @@ const Employees = () => {
 
   const { messageaddemployee, messagupdateemployee, isLoading, employee } =
     useSelector((state: any) => state.getempl);
-  // console.log("em",employee);
+  console.log("em",employee);
   const showModal = () => {
     setOpen(true);
   };

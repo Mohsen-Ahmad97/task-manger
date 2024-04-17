@@ -6,22 +6,19 @@ import {
   GET_DATA_CONFIRMEMAIL,
 } from "../Actions/Actions";
 import { Auth, IcomonResponse } from "../../services/Auth";
+function* informationConfirmEmail(action: any) {
+  try {
+    const data: IcomonResponse = yield Auth.confirmEmail(action.payload);
 
+    yield put({ type: DATA_CONFIRMEMAIL, data });
+
+    yield put({ type: FAILD_CONFIRM, data });
+    console.log("d", data);
+  } catch (err) {
+    yield put({ type: ERRO_CONFIRMEMAIL, err });
+    console.log("error", err);
+  }
+}
 export function* WatachConfirmEmail() {
   yield takeEvery(GET_DATA_CONFIRMEMAIL, informationConfirmEmail);
-
-  function* informationConfirmEmail(action: any) {
-    try {
-      const data: IcomonResponse = yield Auth.confirmEmail(action.payload);
-
-      yield put({ type: DATA_CONFIRMEMAIL, data });
-     
-      
-      yield put({ type: FAILD_CONFIRM, data});
-      console.log("d", data);
-    } catch (err) {
-      yield put({ type: ERRO_CONFIRMEMAIL, err });
-      console.log("error", err);
-    }
-  }
 }

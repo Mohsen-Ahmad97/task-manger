@@ -45,8 +45,6 @@ const Login = () => {
   ) => {
     await form.validateFields();
     dispatch(takeInformationLogin(values));
-
-
     form.resetFields();
   };
   const onFinishFailed: FormProps<FieldValue>["onFinishFailed"] = (

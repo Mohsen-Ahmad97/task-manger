@@ -6,23 +6,23 @@ export function* WatachResetPassword(){
 
 
 
-
+    function* informationResetPassword(action:any){
+      
+        try{
+            
+            const data:string =yield Auth.resetPassword(action.payload)
+            
+            yield put({type:DATA_RESET_PASSWORD,data})
+            console.log("d",data)
+        }
+       catch(err){
+        yield put({type:ERRO_RESET_PASSWORD,err})
+        console.log("errorss",err)
+     }
+            } 
 
     
     yield takeEvery(GET_DATA_RESET_PASSWORD,informationResetPassword)
    
-     function* informationResetPassword(action:any){
-      
-       try{
-           
-           const data:string =yield Auth.resetPassword(action.payload)
-           
-           yield put({type:DATA_RESET_PASSWORD,data})
-           console.log("d",data)
-       }
-      catch(err){
-       yield put({type:ERRO_RESET_PASSWORD,err})
-       console.log("errorss",err)
-    }
-           } 
+  
        }  

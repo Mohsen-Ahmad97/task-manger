@@ -22,6 +22,7 @@ const initial: State = {
 };
 
 const getEmployeeReducer = (state = initial, action: any) => {
+  // console.log(action)
   switch (action.type) {
     case GET_DATA_EMPLOYEE:
       return { ...state, isLoading: true };

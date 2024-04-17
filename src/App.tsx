@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes} from "react-router-dom";
 import Home from "./component/2-Home/Home";
 import Main from "./component/1-Main/Main";
 import Register from "./component/3-Register/Register";
@@ -11,10 +11,12 @@ import Header from "./component/Header";
 
 
 
+
 function App() {
   return (
     <div className="App">
-      <Header/>
+   
+      <Header/>  
       <Routes>
         <Route path="/" element={<Main/>}>
           <Route index element={<Home/>} />
@@ -24,8 +26,10 @@ function App() {
           <Route path="Login" element={<Login/>}/>
           <Route path="Login/resetPassword" element={<ResetPassword/>}/>
         </Route>
+        {/* <ProtectedRoute path="employees" component={<Employees/>} /> */}
         <Route path="employees" element={<Employees/>}/>
       </Routes>
+    
     </div>
   );
 }
