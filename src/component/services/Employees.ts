@@ -29,8 +29,8 @@ export class Employee {
         return result;
       })
       .catch((error) => {
-        console.log(error);
-        return error;
+        console.log(error.response.data);
+        return error.response.data;
       });
   }
   static async updateEmployee(

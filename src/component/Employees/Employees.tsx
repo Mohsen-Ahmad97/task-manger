@@ -23,7 +23,7 @@ const Employees = () => {
     dispatch(takegetEmployee());
   }, [dispatch]);
 
-  const { messageaddemployee, messagupdateemployee, isLoading, employee } =
+  const { MessageAdd, MessageUpdate, isLoading, employee, MessageDelete } =
     useSelector((state: any) => state.getempl);
   console.log("isloading", isLoading);
   console.log("em", employee);
@@ -79,7 +79,7 @@ const Employees = () => {
               open={open1}
               title={t("Update Employee")}
               onCancel={handleCancel1}
-              footer={[<UpdateEmployee id={id} />]}
+              footer={[<UpdateEmployee id={id} setopen1={setOpen1} />]}
             />
 
             <Button
@@ -116,19 +116,17 @@ const Employees = () => {
           alignItems: "center",
         }}
       >
-        {messageaddemployee && (
-          <Alert message={t("messageaddemployee")} type="success" />
-        )}
-        {messagupdateemployee && (
-          <Alert message={t("messagupdateemployee")} type="success" />
-        )}
+        {MessageAdd && <Alert message={MessageAdd} type="success" />}
+        {MessageUpdate && <Alert message={MessageUpdate} type="success" />}
+        {MessageDelete && <Alert message={MessageDelete} type="success" />}
         <Button onClick={showModal}>{t("Add new Employee")}</Button>
         <Modal
           open={open}
           title={t("Add new Employee")}
           onCancel={handleCancel}
-          footer={[<AddEmployees />]}
+          footer={[<AddEmployees setopen={setOpen} />]}
         />
+
         <Table
           dataSource={employee}
           columns={columns}

@@ -7,10 +7,11 @@ import {
 } from "../Actions/Actions";
 import { Employee } from "./../../services/Employees";
 import { IcomonResponse } from "../../Models/General";
+import { employee } from "../../Models/Modules";
 function* informationaddEmployee(action: any) {
   try {
-    const response: IcomonResponse = yield Employee.addEmployee(action.payload);
-
+    const response: employee = yield Employee.addEmployee(action.payload);
+     
     yield put({ type: DATA_ADD_EMPLOYEE, response });
     console.log("d", response);
     const data: IcomonResponse = yield Employee.getEmployee();

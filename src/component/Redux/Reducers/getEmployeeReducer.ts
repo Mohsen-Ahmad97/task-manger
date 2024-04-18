@@ -1,6 +1,7 @@
 import { employee } from "../../Models/Modules";
 import {
   DATA_ADD_EMPLOYEE,
+  DATA_DELETE_EMPLOYEE,
   DATA_EMPLOYEE,
   DATA_UPDATE_EMPLOYEE,
   ERRO_ADD_EMPLOYEE,
@@ -11,19 +12,21 @@ import {
 interface State {
   employee : employee[];
   MessageUpdate: string;
-  Message: string;
+  MessageAdd: string;
+  MessageDelete:string,
   isLoading: boolean;
 }
 
 const initial: State = {
   employee : [],
   MessageUpdate: "",
-  Message: "",
+  MessageAdd: "",
+  MessageDelete:"",
   isLoading: false,
 };
 
 const getEmployeeReducer = (state = initial, action: any) => {
-  // console.log(action)
+
   switch (action.type) {
     
 
@@ -34,11 +37,13 @@ const getEmployeeReducer = (state = initial, action: any) => {
     case ERRO_EMPLOYEE:
       return { ...state, err: action.err,isLoading: false };
     case DATA_ADD_EMPLOYEE:
-      return { ...state, Message: action.response.Message,isLoading: false };
+      return { ...state, MessageAdd: action.response.Message,isLoading: false };
       case ERRO_ADD_EMPLOYEE:
         return{...state,isLoading: false}
     case DATA_UPDATE_EMPLOYEE:
       return { ...state, MessageUpdate: action.response.Message,isLoading: false };
+      case DATA_DELETE_EMPLOYEE:
+      return { ...state, MessageDelete: action.response.Message,isLoading: false };
     default:
       return state;
   }
