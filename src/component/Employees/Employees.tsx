@@ -10,13 +10,7 @@ import { useNavigate } from "react-router-dom";
 import AddEmployees from "./AddEmployees";
 import UpdateEmployee from "./UpdateEmployee";
 import { useTranslation } from "react-i18next";
-
-export interface employee {
-  ID: string;
-  FirstName: string;
-  LastName: string;
-  Email: string;
-}
+import { employees } from "../Models/Modules";
 
 const Employees = () => {
   const { t } = useTranslation();
@@ -31,7 +25,8 @@ const Employees = () => {
 
   const { messageaddemployee, messagupdateemployee, isLoading, employee } =
     useSelector((state: any) => state.getempl);
-  console.log("em",employee);
+  console.log("isloading", isLoading);
+  console.log("em", employee);
   const showModal = () => {
     setOpen(true);
   };
@@ -45,7 +40,7 @@ const Employees = () => {
   const handleCancel1 = () => {
     setOpen1(false);
   };
-  const columns: TableProps<employee>["columns"] = [
+  const columns: TableProps<employees>["columns"] = [
     {
       title: t("ID"),
       dataIndex: "Id",
@@ -97,7 +92,6 @@ const Employees = () => {
                   okType: "danger",
                   onOk: () => {
                     dispatch(takeDeleteEmployees(record.Id));
-                    dispatch(takegetEmployee());
                   },
                 });
               }}

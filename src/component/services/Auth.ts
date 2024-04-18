@@ -1,29 +1,9 @@
-import { FieldTyp } from "../3-Register/ConfirmEmail";
-import { Values } from "./../3-Register/Register";
-import { FieldTy } from "../3-Register/completeRegister";
-import { FieldValue } from "../4-Login/Login";
-import { FieldT } from "../4-Login/ResetPassword";
 import api from "./Api";
-
-
-export interface data {
-  Token: string;
-  RefreshToken: string;
-  Success: Boolean;
-  errors: any[];
-  CompleteRegister: Boolean;
-}
-export interface IcomonResponse {
-  Code: Number;
-  Message: string;
-  Result?: Boolean;
-  Data:any
-  dateOfBirth?: null;
-  data?: any;
-}
+import { IcomonResponse } from "../Models/General";
+import { CompleteType, ConfirmType, LoginType, RegisterType, ResetType } from "../Models/Modules";
 
 export class Auth {
-  static async register(mode: Values): Promise<IcomonResponse> {
+  static async register(mode: RegisterType): Promise<IcomonResponse> {
     return await api
       .post(
         "/api/Auth/register",
@@ -39,16 +19,16 @@ export class Auth {
         }
       )
       .then(function (response) {
-        let result: IcomonResponse = response.data;
+        let result: IcomonResponse = response?.data;
         console.log("result", result);
         return result;
       })
       .catch((error) => {
         console.log("errorregister", error.response.data);
-        return error.response.data;
+        return error?.response?.data;
       });
   }
-  static async confirmEmail(mode: FieldTyp): Promise<IcomonResponse> {
+  static async confirmEmail(mode: ConfirmType): Promise<IcomonResponse> {
     return await api
       .post(
         "/api/Auth/confirm-email",
@@ -61,14 +41,17 @@ export class Auth {
         }
       )
       .then(function (response) {
-        let result: IcomonResponse = response.data;
-        localStorage.setItem("token", response.data.Data.Token);
-        localStorage.setItem("refreshToken", response.data.Data.RefreshToken);
+        let result: IcomonResponse = response?.data;
+        localStorage.setItem("token", response?.data?.Data?.Token);
+        localStorage.setItem(
+          "refreshToken",
+          response?.data?.Data?.RefreshToken
+        );
         console.log("res", result);
         return result;
       })
       .catch(function (error) {
-        let Error: IcomonResponse = error.response.data;
+        let Error: IcomonResponse = error?.response?.data;
         console.log("err", Error);
         return Error;
       });
@@ -87,16 +70,16 @@ export class Auth {
         }
       )
       .then(function (response) {
-        let result: IcomonResponse = response.data;
+        let result: IcomonResponse = response?.data;
         console.log("result", result);
         return result;
       })
       .catch(function (error) {
         console.log("errorResendCode", error);
-        return error.data;
+        return error?.data;
       });
   }
-  static async completRegister(mode: FieldTy): Promise<IcomonResponse> {
+  static async completRegister(mode: CompleteType): Promise<IcomonResponse> {
     return await api
       .post(
         "/api/Auth/complete-register",
@@ -123,7 +106,7 @@ export class Auth {
         return error;
       });
   }
-  static async login(mode: FieldValue): Promise<IcomonResponse> {
+  static async login(mode: LoginType): Promise<IcomonResponse> {
     return await api
       .post(
         "/api/Auth/login",
@@ -139,15 +122,15 @@ export class Auth {
         }
       )
       .then(function (response) {
-        let result: IcomonResponse = response.data;
-        localStorage.setItem("token", result.Data.Token);
-        localStorage.setItem("refreshToken", result.Data.RefreshToken);
+        let result: IcomonResponse = response?.data;
+        localStorage.setItem("token", result?.Data?.Token);
+        localStorage.setItem("refreshToken", result?.Data?.RefreshToken);
         console.log("result", result);
         return result;
       })
       .catch(function (error) {
         console.log(error.response.data);
-        return error.response.data;
+        return error?.response?.data;
       });
   }
   static async forgetPassword(): Promise<IcomonResponse> {
@@ -165,16 +148,16 @@ export class Auth {
         }
       )
       .then(function (response) {
-        let result: IcomonResponse = response.data;
+        let result: IcomonResponse = response?.data;
         console.log(result);
         return result;
       })
       .catch(function (error) {
         console.log(error.response);
-        return error.response;
+        return error?.response;
       });
   }
-  static async resetPassword(mode: FieldT): Promise<IcomonResponse> {
+  static async resetPassword(mode: ResetType): Promise<IcomonResponse> {
     return await api
       .post(
         "/api/Auth/reset-password",
@@ -192,12 +175,12 @@ export class Auth {
         }
       )
       .then(function (response) {
-        let result: IcomonResponse = response.data;
+        let result: IcomonResponse = response?.data;
         console.log(result);
         return result;
       })
       .catch(function (error) {
-        console.log("ee", error.response);
+        console.log("ee", error?.response);
         return error.response;
       });
   }

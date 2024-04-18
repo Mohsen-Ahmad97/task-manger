@@ -4,7 +4,8 @@ import {
   ERRO_RESENDCODE,
   GET_DATA_RESENDCODE,
 } from "../Actions/Actions";
-import { Auth, IcomonResponse } from "../../services/Auth";
+import { Auth } from "../../services/Auth";
+import { IcomonResponse } from "../../Models/General";
 
 
 function* informationResendCode() {

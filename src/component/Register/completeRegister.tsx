@@ -5,12 +5,9 @@ import { takeInformationCompleteRegister } from "../Redux/ActionCreator/ActionsC
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { CompleteType } from "../Models/Modules";
 
-export interface FieldTy {
-  firstName: string;
-  lastName: string;
-  dateOfBirth: null;
-}
+
 
 const CompleteRegister = () => {
   const { t } = useTranslation();
@@ -21,14 +18,14 @@ const CompleteRegister = () => {
     (state: any) => state.comp
   );
 
-  const onFinish: FormProps<FieldTy>["onFinish"] = async (values: FieldTy) => {
+  const onFinish: FormProps<CompleteType>["onFinish"] = async (values: CompleteType) => {
     // console.log("Success:", values);
     await form.validateFields();
     dispatch(takeInformationCompleteRegister(values));
     form.resetFields();
   };
 
-  const onFinishFailed: FormProps<FieldTy>["onFinishFailed"] = (errorInfo) => {
+  const onFinishFailed: FormProps<CompleteType>["onFinishFailed"] = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
   return (

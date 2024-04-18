@@ -9,11 +9,9 @@ import {
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { ConfirmType } from "../Models/Modules";
 
-export interface FieldTyp {
-  email: string;
-  verficationCode: string;
-}
+
 
 const ConfirmEmail = () => {
   const {t}=useTranslation();
@@ -31,14 +29,14 @@ const ConfirmEmail = () => {
     }
     form.resetFields();
   }, [isSuccess]);
-  const onFinish: FormProps<FieldTyp>["onFinish"] = async (
-    values: FieldTyp
+  const onFinish: FormProps<ConfirmType>["onFinish"] = async (
+    values:ConfirmType
   ) => {
     // console.log("Success:", values);
     await form.validateFields();
     dispatch(takeInformationConfirmEmail(values));
   };
-  const onFinishFailed: FormProps<FieldTyp>["onFinishFailed"] = (errorInfo) => {
+  const onFinishFailed: FormProps<ConfirmType>["onFinishFailed"] = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
   return (

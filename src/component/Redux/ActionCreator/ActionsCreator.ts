@@ -1,10 +1,3 @@
-import { FieldType } from "../../5-Employees/AddEmployees";
-import { Values } from "../../3-Register/Register";
-import { FieldTyp } from "../../3-Register/ConfirmEmail";
-import { FieldTy } from "../../3-Register/completeRegister";
-import { FieldValue } from "../../4-Login/Login";
-import { FieldT } from "../../4-Login/ResetPassword";
-import { FieldType1 } from "./../../5-Employees/UpdateEmployee";
 import {
   GET_ADD_EMPLOYEE,
   GET_DATA_COMPLETE_REGISTER,
@@ -18,14 +11,23 @@ import {
   GET_DELETE_EMPLOYEE,
   GET_UPDATE_EMPLOYEE,
 } from "../Actions/Actions";
+import {
+  AddEmployeeType,
+  CompleteType,
+  ConfirmType,
+  LoginType,
+  RegisterType,
+  ResetType,
+  UpdateEmployeeType,
+} from "../../Models/Modules";
 
-export function takeInformationRegister(data: Values) {
+export function takeInformationRegister(data: RegisterType) {
   return {
     type: GET_DATA_REGISTER,
     payload: data,
   };
 }
-export function takeInformationConfirmEmail(data: FieldTyp) {
+export function takeInformationConfirmEmail(data: ConfirmType) {
   return {
     type: GET_DATA_CONFIRMEMAIL,
     payload: data,
@@ -38,14 +40,14 @@ export function takeInformationResendCode() {
   };
 }
 
-export function takeInformationCompleteRegister(data: FieldTy) {
+export function takeInformationCompleteRegister(data: CompleteType) {
   return {
     type: GET_DATA_COMPLETE_REGISTER,
     payload: data,
   };
 }
 
-export function takeInformationLogin(data: FieldValue) {
+export function takeInformationLogin(data: LoginType) {
   return {
     type: GET_DATA_LOGIN,
     payload: data,
@@ -57,7 +59,7 @@ export function takeInformationFrogetPassword() {
     type: GET_DATA_FORGET_PASSWORD,
   };
 }
-export function takeInformationResetPassword(data: FieldT) {
+export function takeInformationResetPassword(data: ResetType) {
   return {
     type: GET_DATA_RESET_PASSWORD,
     payload: data,
@@ -68,13 +70,13 @@ export function takegetEmployee() {
     type: GET_DATA_EMPLOYEE,
   };
 }
-export function takeAddEmployees(data: FieldType) {
+export function takeAddEmployees(data: AddEmployeeType) {
   return {
     type: GET_ADD_EMPLOYEE,
     payload: data,
   };
 }
-export function takeUpdateEmployees(data: FieldType1) {
+export function takeUpdateEmployees(data: UpdateEmployeeType) {
   return {
     type: GET_UPDATE_EMPLOYEE,
     payload: data,

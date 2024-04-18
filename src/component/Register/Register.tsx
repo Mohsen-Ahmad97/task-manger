@@ -1,46 +1,53 @@
-import { Alert, Button, Form, FormProps, Input, Space, Spin, Typography } from "antd";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  Alert,
+  Button,
+  Form,
+  FormProps,
+  Input,
+  Space,
+  Spin,
+  Typography,
+} from "antd";
 import { useForm } from "antd/es/form/Form";
 import { useDispatch } from "react-redux";
-import { takeInformationResetPassword } from "../Redux/ActionCreator/ActionsCreator";
+import { takeInformationRegister } from "../Redux/ActionCreator/ActionsCreator";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { RegisterType } from "../Models/Modules";
 
-export interface FieldT {
-  email: string;
-  verficationCode: string;
-  password: string;
-  confirmPassword: string;
-}
 
-const ResetPassword = () => {
+
+const Register = () => {
   const [form] = useForm();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { messageresetpassword,messageWrongCode, isLoading } = useSelector(
-    (state: any) => state.reset
+  const { message, isSuccess, isLoading } = useSelector(
+    (state: any) => state.re
   );
-  // console.log("Success:", messageresetpassword);
+
   const navigate = useNavigate();
-  const onFinish: FormProps<FieldT>["onFinish"] = async (values: FieldT) => {
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/confirmPassword");
+      form.resetFields();
+    }
+  });
+
+  const onFinish: FormProps<RegisterType>["onFinish"] = async (values: RegisterType) => {
     // console.log("Success:", values);
     await form.validateFields();
-    dispatch(takeInformationResetPassword(values));
-    form.resetFields();
+    localStorage.setItem("email", values.email);
+    dispatch(takeInformationRegister(values));
   };
-  const onFinishFailed: FormProps<FieldT>["onFinishFailed"] = (errorInfo) => {
+  const onFinishFailed: FormProps<RegisterType>["onFinishFailed"] = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
   return (
-    <Spin spinning={isLoading}>
-      <Space direction="vertical" style={{ width: "90%" }}>
-        {messageresetpassword && (
-          <Alert message={t("messageresetpassword")} type="success" />
-        )}
-        {messageWrongCode && (
-          <Alert message={t("messageWrongCode")} type="success" />
-        )}
+    <Space direction="vertical">
+      <Spin spinning={isLoading}>
+        {message && <Alert message={t("message")} type="success" />}
         <Typography
           style={{
             marginBottom: "50px",
@@ -49,12 +56,11 @@ const ResetPassword = () => {
             fontSize: "50px",
           }}
         >
-          {t("Reset Password")}
+          {t("Register")}
         </Typography>
-
         <Form
           form={form}
-          name="resetpassword"
+          name="register"
           style={{ maxWidth: 600 }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
@@ -73,7 +79,7 @@ const ResetPassword = () => {
             <Input placeholder={t("Please input your email")} />
           </Form.Item>
           <Form.Item
-            label={t("NewPassword")}
+            label={t("Password")}
             name="password"
             style={{ width: "100%" }}
             rules={[
@@ -83,7 +89,9 @@ const ResetPassword = () => {
                 pattern: new RegExp(
                   /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?!.* ).{8,16}$/
                 ),
-                message: t("passord should contain characters such A 9 A @"),
+                message: t(
+                  "passord should contain at least 8 characters such A 9 A @"
+                ),
               },
             ]}
             hasFeedback
@@ -91,7 +99,7 @@ const ResetPassword = () => {
             <Input.Password placeholder={t("Please input your password")} />
           </Form.Item>
           <Form.Item
-            label={t("ConfirmNewPassword")}
+            label={t("ConfirmPassword")}
             name="confirmPassword"
             dependencies={["password"]}
             style={{ width: "100%" }}
@@ -99,9 +107,7 @@ const ResetPassword = () => {
               { required: true, message: t("Please confirm your password") },
               { min: 6 },
               {
-                pattern: new RegExp(
-                  /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?!.* ).{8,16}$/
-                ),
+                pattern: new RegExp(/^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]/),
                 message: t("passord should contain characters such A 9 A @"),
               },
               () => ({
@@ -119,26 +125,9 @@ const ResetPassword = () => {
           >
             <Input.Password placeholder={t("Please confirm your password")} />
           </Form.Item>
-          <Form.Item
-            label={t("VerficationCode")}
-            name="verficationCode"
-            style={{ width: "100%" }}
-            rules={[
-              {
-                required: true,
-                message: t("Please input your verficationCode"),
-              },
-              { min: 6, message: t("at least 6 characters ") },
-            ]}
-            hasFeedback
-          >
-            <Input.Password
-              placeholder={t("Please input your verficationCode")}
-            />
-          </Form.Item>
           <Form.Item style={{ textAlign: "center" }}>
             <Button type="primary" htmlType="submit" style={{ width: "70%" }}>
-              {t("Reset Password")}
+              {t("Register")}
             </Button>
           </Form.Item>
           <Form.Item style={{ textAlign: "center" }}>
@@ -146,16 +135,16 @@ const ResetPassword = () => {
               type="primary"
               style={{ width: "70%" }}
               onClick={() => {
-                navigate("/Login");
+                navigate("/");
               }}
             >
-              {t("Back To Login Page")}
+              {t("Back To Main Page")}
             </Button>
           </Form.Item>
         </Form>
-      </Space>
-    </Spin>
+      </Spin>
+    </Space>
   );
 };
 
-export default ResetPassword;
+export default Register;

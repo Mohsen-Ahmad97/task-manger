@@ -1,28 +1,22 @@
 import { Button, Form, FormProps, Input } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { useDispatch } from "react-redux";
-import { takeUpdateEmployees, takegetEmployee } from "../Redux/ActionCreator/ActionsCreator";
+import { takeUpdateEmployees } from "../Redux/ActionCreator/ActionsCreator";
 import { useTranslation } from "react-i18next";
+import { UpdateEmployeeType } from "../Models/Modules";
 
-export interface FieldType1 {
-  firstName: string;
-  lastName: string;
-  id:number
-}
-
-const UpdateEmployee = (props:any) => {
-  const {t}=useTranslation();
+const UpdateEmployee = (props: any) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [form] = useForm();
-  const onFinish: FormProps<FieldType1>["onFinish"] = async (
-    values: FieldType1
+  const onFinish: FormProps<UpdateEmployeeType>["onFinish"] = async (
+    values: UpdateEmployeeType
   ) => {
     // console.log("Success:", values);
     await form.validateFields();
-    dispatch(takeUpdateEmployees({...values,id:props.id}));
-    dispatch(takegetEmployee());
+    dispatch(takeUpdateEmployees({ ...values, id: props.id }));
   };
-  const onFinishFailed: FormProps<FieldType1>["onFinishFailed"] = (
+  const onFinishFailed: FormProps<UpdateEmployeeType>["onFinishFailed"] = (
     errorInfo
   ) => {
     console.log("Failed:", errorInfo);
@@ -40,7 +34,7 @@ const UpdateEmployee = (props:any) => {
         label={t("FirstName")}
         name="firstName"
         style={{ width: "100%" }}
-        rules={[{ required: true, message:  t("Please input your firstName") }]}
+        rules={[{ required: true, message: t("Please input your firstName") }]}
         hasFeedback
       >
         <Input placeholder={t("Please input your firstName")} />
@@ -52,7 +46,7 @@ const UpdateEmployee = (props:any) => {
         rules={[{ required: true, message: t("Please input  your lastName") }]}
         hasFeedback
       >
-        <Input placeholder= {t("Please input  your lastName")} />
+        <Input placeholder={t("Please input  your lastName")} />
       </Form.Item>
       <Form.Item style={{ textAlign: "center" }}>
         <Button type="primary" htmlType="submit" style={{ width: "70%" }}>

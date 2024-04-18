@@ -5,10 +5,12 @@ import {
   FAILD_CONFIRM,
   GET_DATA_CONFIRMEMAIL,
 } from "../Actions/Actions";
-import { Auth, IcomonResponse } from "../../services/Auth";
+
+import { Auth} from "../../services/Auth";
+import { IcomonResponse } from "../../Models/General";
 function* informationConfirmEmail(action: any) {
   try {
-    const data: IcomonResponse = yield Auth.confirmEmail(action.payload);
+    const data: IcomonResponse= yield Auth.confirmEmail(action.payload);
 
     yield put({ type: DATA_CONFIRMEMAIL, data });
 

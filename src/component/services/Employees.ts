@@ -1,115 +1,66 @@
-import axios from "axios";
-import { FieldType } from "../5-Employees/AddEmployees";
-import { FieldType1 } from "../5-Employees/UpdateEmployee";
 import api from "./Api";
- interface data {
-  Id: number;
-  FirstName: string;
-  LastName: string;
-  Email: string;
-  EmployeeTeam: [];
-  EmployeeMissions: [];
-}
- export interface employee {
-  Code: number;
-  Message: string;
-  Result: Boolean;
-  Data: data[];
-  response?:any
-}
+import { IcomonResponse } from "../Models/General";
+import { AddEmployeeType, UpdateEmployeeType } from "../Models/Modules";
+
 export class Employee {
-  static async getEmployee(): Promise<employee> {
+  static async getEmployee(): Promise<IcomonResponse> {
     return await api
-      .get(
-        "/api/Employee/Employees",
-        // {
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     Authorization: "Bearer " + localStorage.getItem("token"),
-        //   },
-        // }
-      )
+      .get("/api/Employee/Employees")
       .then(function (response) {
-        let result: employee = response.data;
-        console.log("responseemployee",result)
+        let result: IcomonResponse = response?.data;
+        console.log("responseemployee", result);
         return result;
       })
-      .then((error) => {
-      
-        console.log("erroremployee",error.response.data);
-        return error.response.data;
+      .catch((error) => {
+        console.log("erroremployee");
+        return error;
       });
   }
 
-  static async addEmployee(mode: FieldType): Promise<employee> {
+  static async addEmployee(mode: AddEmployeeType): Promise<IcomonResponse> {
     return await api
-      .post(
-        "/api/Employee/AddEmployee",
-        {
-          FirstName: mode.firstName,
-          LastName: mode.lastName,
-          Email: mode.email,
-        },
-        // {
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     Authorization: "Bearer " + localStorage.getItem("token"),
-        //   },
-        // }
-      )
+      .post("/api/Employee/AddEmployee", {
+        FirstName: mode.firstName,
+        LastName: mode.lastName,
+        Email: mode.email,
+      })
       .then(function (response) {
-        let result: employee = response.data;
+        let result: IcomonResponse = response?.data;
         return result;
       })
-      .then((error) => {
+      .catch((error) => {
         console.log(error);
         return error;
       });
   }
-  static async updateEmployee(mode: FieldType1): Promise<employee> {
-    return await axios
-      .post(
-        "/api/Employee/UpdateEmployee",
-        {
-          FirstName: mode.firstName,
-          LastName: mode.lastName,
-          id: mode.id,
-        },
-        // {
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     Authorization: "Bearer " + localStorage.getItem("token"),
-        //   },
-        // }
-      )
+  static async updateEmployee(
+    mode: UpdateEmployeeType
+  ): Promise<IcomonResponse> {
+    return await api
+      .post("/api/Employee/UpdateEmployee", {
+        FirstName: mode.firstName,
+        LastName: mode.lastName,
+        id: mode.id,
+      })
       .then(function (response) {
-        let result: employee = response.data;
+        let result: IcomonResponse = response?.data;
         return result;
       })
-      .then((error) => {
-        console.log(error);
-        return error;
+      .catch((error) => {
+        console.log(error.response.data);
+        return error?.response?.data;
       });
   }
-  static async deleteEmployee(id:number) {
-    return await axios
-      .post(
-        "/api/Employee/DeleteEmployee",
-        {
-          Id:id
-        },
-        // {
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     Authorization: "Bearer " + localStorage.getItem("token"),
-        //   },
-        // }
-      )
+  static async deleteEmployee(id: number): Promise<IcomonResponse> {
+    return await api
+      .post("/api/Employee/DeleteEmployee", {
+        Id: id,
+      })
       .then(function (response) {
-        let result = response.data;
+        let result: IcomonResponse = response?.data;
         return result;
       })
-      .then((error) => {
+      .catch((error) => {
         console.log(error);
         return error;
       });

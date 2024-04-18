@@ -1,31 +1,24 @@
 import "./AddEmployees.css";
 import { Button, Form, Input } from "antd";
 import { FormProps, useForm } from "antd/es/form/Form";
-import { takeAddEmployees, takegetEmployee } from "../Redux/ActionCreator/ActionsCreator";
+import { takeAddEmployees } from "../Redux/ActionCreator/ActionsCreator";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { AddEmployeeType } from "../Models/Modules";
 
-export interface FieldType {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
 const AddEmployees = () => {
   const [form] = useForm();
   const dispatch = useDispatch();
-  const {t}=useTranslation();
+  const { t } = useTranslation();
 
-
-  const onFinish: FormProps<FieldType>["onFinish"] = async (
-    values: FieldType
+  const onFinish: FormProps<AddEmployeeType>["onFinish"] = async (
+    values: AddEmployeeType
   ) => {
     // console.log("Success:", values);
     await form.validateFields();
     dispatch(takeAddEmployees(values));
-    dispatch(takegetEmployee());
-    
   };
-  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
+  const onFinishFailed: FormProps<AddEmployeeType>["onFinishFailed"] = (
     errorInfo
   ) => {
     console.log("Failed:", errorInfo);
@@ -43,10 +36,10 @@ const AddEmployees = () => {
         label={t("FirstName")}
         name="firstName"
         style={{ width: "100%" }}
-        rules={[{ required: true, message:t( "Please input your firstName") }]}
+        rules={[{ required: true, message: t("Please input your firstName") }]}
         hasFeedback
       >
-        <Input placeholder={t( "Please input your firstName")} />
+        <Input placeholder={t("Please input your firstName")} />
       </Form.Item>
       <Form.Item
         label={t("LastName")}
@@ -70,15 +63,10 @@ const AddEmployees = () => {
         <Input placeholder={t("Please input your email")} />
       </Form.Item>
       <Form.Item style={{ textAlign: "center" }}>
-          <Button
-            type="primary"
-            htmlType="submit"
-            style={{ width: "70%" }}
-        
-          >
-           {t("Add Employee")}
-          </Button>
-        </Form.Item>
+        <Button type="primary" htmlType="submit" style={{ width: "70%" }}>
+          {t("Add Employee")}
+        </Button>
+      </Form.Item>
     </Form>
   );
 };

@@ -4,7 +4,8 @@ import {
   ERRO_LOGIN,
   GET_DATA_LOGIN,
 } from "../Actions/Actions";
-import { Auth, IcomonResponse } from "./../../services/Auth";
+import { Auth } from "./../../services/Auth";
+import { IcomonResponse } from "../../Models/General";
 function* informationLogin(action: any) {
   try {
     const response: IcomonResponse = yield Auth.login(action.payload);

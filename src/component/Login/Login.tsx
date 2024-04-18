@@ -18,36 +18,34 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { LoginType } from "../Models/Modules";
 
-export interface FieldValue {
-  password: string;
-  email: string;
-}
+
 
 const Login = () => {
   const { t } = useTranslation();
   const [form] = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoading, isSuccess, messageLogin, messagefaild} =
-    useSelector((state: any) => state.log);
+  const { isLoading, isSuccess, messageLogin, messagefaild } = useSelector(
+    (state: any) => state.log
+  );
   const { messageForgetPassword } = useSelector((state: any) => state.forg);
 
   useEffect(() => {
-    
     if (isSuccess) {
       navigate("/employees");
       form.resetFields();
     }
-  });
-  const onFinish: FormProps<FieldValue>["onFinish"] = async (
-    values: FieldValue
+  }, [isSuccess]);
+  const onFinish: FormProps<LoginType>["onFinish"] = async (
+    values: LoginType
   ) => {
     await form.validateFields();
     dispatch(takeInformationLogin(values));
     form.resetFields();
   };
-  const onFinishFailed: FormProps<FieldValue>["onFinishFailed"] = (
+  const onFinishFailed: FormProps<LoginType>["onFinishFailed"] = (
     errorInfo
   ) => {
     console.log("Failed:", errorInfo);
@@ -58,12 +56,8 @@ const Login = () => {
         {messageLogin && <Alert message={messageLogin} type="success" />}
         {messageForgetPassword && (
           <Alert message={t("messageForgetPassword")} type="success" />
-          
         )}
-{messagefaild && (
-          <Alert message={messagefaild} type="success" />
-          
-        )}
+        {messagefaild && <Alert message={messagefaild} type="success" />}
 
         <Typography
           style={{
