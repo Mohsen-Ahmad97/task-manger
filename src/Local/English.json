@@ -43,7 +43,7 @@
   "Are You Sure deete":"Are You Sure deete",
   "yes":"yes",
   "No":"No",
-  "messageaddemployee":"Added Success",
-  "messagupdateemployee":"messagupdateemployee",
-  "messageForgetPassword" :"We send verification code to your email address to reset your password"
+  "messageForgetPassword" :"We send verification code to your email address to reset your password",
+  "messageWrongCode":"Wrong verfication code",
+  "language":"language"
 }
