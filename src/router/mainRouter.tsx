@@ -8,6 +8,9 @@ import Login from "../components/Login/Login";
 import ResetPassword from "../components/Login/ResetPassword";
 import PrivateRoutes from "./PrivateRoutes";
 import Employees from "../layout/layoutemployees/Employees";
+import Admin from "../layout/layoutadmin/Admin";
+import Mission from "../layout/layoutmission/Mission";
+import Milestone from "../layout/layoutmilestone/Milestone";
 
 const MainRouter = () => {
   return (
@@ -23,7 +26,12 @@ const MainRouter = () => {
           <Route path="Login/resetPassword" element={<ResetPassword />} />
         </Route>
         <Route element={<PrivateRoutes />}>
-          <Route path="employees" element={<Employees />} />
+          <Route path="Admin" element={<Admin />} >
+            <Route path="employees" element={<Employees/>}/>
+            <Route index element={<Mission/>}/>
+            <Route path=":IdMilestone" element={<Milestone/>}/>
+
+            </Route>
         </Route>
       </Routes>
     </>

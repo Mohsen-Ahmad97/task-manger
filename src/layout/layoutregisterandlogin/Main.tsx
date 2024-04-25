@@ -9,7 +9,7 @@ const Main = () => {
   const { message, isSuccess } = useSelector((state: any) => state.message);
   useEffect(() => {
 
-     if(!message || message==="Token" ){
+     if(!message ){
      toast.dismiss()
      }
      else if (isSuccess) {

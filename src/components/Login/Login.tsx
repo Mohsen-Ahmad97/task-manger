@@ -31,7 +31,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate("/employees");
+      navigate("/Admin");
       form.resetFields();
     }
   }, [isSuccess]);

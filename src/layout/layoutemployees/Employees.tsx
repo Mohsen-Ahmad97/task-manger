@@ -1,4 +1,4 @@
-import {  Button, Input, Modal, Space, Table, TableProps } from "antd";
+import { Button, Input, Modal, Space, Table, TableProps } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -16,17 +16,13 @@ import AddEmployeeModal from "../../components/Employees/AddEmployeeModal";
 import { ToastContainer, toast } from "react-toastify";
 
 const Employees = () => {
-  const { message,isSuccess} = useSelector((state: any) => state.message);
+  
 
-// console.log("s",isSuccess)
+  // console.log("s",isSuccess)
   useEffect(() => {
-    if (!message) {
-      toast.dismiss();
-    }
-     else if (isSuccess) {
-      toast.success(message);
-    } else toast.error(message);
-  }, [isSuccess,message]);
+    dispatch(takegetEmployee());
+   
+  }, []);
 
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -37,14 +33,9 @@ const Employees = () => {
   const [FirstName, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
   const [SearchByFirstName, setSearchByFirstName] = useState("");
-  useEffect(() => {
-    dispatch(takegetEmployee());
-  }, [dispatch]);
 
   const { isLoading, employee } = useSelector((state: any) => state.getempl);
-  console.log("isloading", isLoading);
-  console.log("em", employee);
-
+ 
   const showModal1 = () => {
     setOpen1(true);
   };
@@ -139,8 +130,6 @@ const Employees = () => {
     <Space
       direction="vertical"
       style={{
-        width: "100vw",
-        margin: "20px auto",
         display: "flex",
         alignItems: "center",
       }}
@@ -167,7 +156,7 @@ const Employees = () => {
       >
         {t("Back To Main Page")}
       </Button>
-      <ToastContainer />
+    
     </Space>
   );
 };
