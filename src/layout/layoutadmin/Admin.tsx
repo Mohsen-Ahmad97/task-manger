@@ -42,7 +42,7 @@ const Admin = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  const { message, isSuccess } = useSelector((state: any) => state.message);
+  const { message, isSuccess }:any = useSelector((state: any) => state.message);
   useEffect(() => {
   
     if (!message) {

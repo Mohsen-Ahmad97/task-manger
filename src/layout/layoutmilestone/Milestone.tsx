@@ -35,13 +35,14 @@ const Milestone = () => {
 const { IdMilestone }: any = useParams();
   // console.log("id is ",Id)
   const dispatch = useDispatch();
-  
+  const { isSuccess } = useSelector((state: any) => state.message);
+
   useEffect(() => {
     
     dispatch(takeGetMilistone(IdMilestone));
 
   
-  }, []);
+  }, [isSuccess]);
   const { payload, isloading } = useSelector(
     (state: any) => state.millistone
     
