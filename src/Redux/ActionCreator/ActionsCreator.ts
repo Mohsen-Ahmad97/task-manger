@@ -122,27 +122,29 @@ export function takeDeleteMission(ID: number) {
   };
 }
 export function takeGetMilistone(id: number) {
-  console.log(id);
+  // console.log(id);
   return {
     type: GET_DATA_MILISTONE,
     payload: id,
   };
 }
-export function takeAddmilestone(values: milistone) {
+export function takeAddmilestone(data:any) {
   return {
     type: CREATE_DATA_MILESTONE,
-    payload: values,
+    payload: data,
   };
 }
-export function takeUpdatemilestone(values: milistone) {
+
+export function takeUpdatemilestone(values:any) {
   return {
     type: UPDATE_DATA_MILESTONE,
     payload: values,
+   
   };
 }
-export function takeDeletemilestone(Id:number) {
+export function takeDeletemilestone(data:any) {
   return {
     type: DELETE_DATA_MILESTONE,
-    payload: Id
+    payload: data
   };
 }

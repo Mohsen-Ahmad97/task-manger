@@ -18,7 +18,7 @@ const Main = () => {
   },[isSuccess,message]);
 
   return (
-    <div className="main ">
+    <div className="main" >
       <Outlet />
       <ToastContainer />
     </div>

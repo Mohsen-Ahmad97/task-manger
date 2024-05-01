@@ -3,7 +3,7 @@ import React from 'react'
 import UpdateMission from './UpdateMision'
 import Milestone from '../layoutmilestone/Milestone'
 
-const UpdateMissionModal = ({handelcancel1,open1,id,setopen1,StartTime,EndTime,Name}:any) => {
+const UpdateMissionModal = ({handelcancel1,open1,setopen1,record}:any) => {
   return (
  
   <Space>
@@ -12,9 +12,7 @@ const UpdateMissionModal = ({handelcancel1,open1,id,setopen1,StartTime,EndTime,N
     title="update mission "
     onCancel={handelcancel1}
     footer={[
-      <UpdateMission setopen1={setopen1} id={id}  StartTime={StartTime}
-       EndTime={EndTime}
-       Name={Name}
+      <UpdateMission setopen1={setopen1}  record={record}
        />,
   
     ]}

@@ -11,30 +11,32 @@ import Employees from "../layout/layoutemployees/Employees";
 import Admin from "../layout/layoutadmin/Admin";
 import Mission from "../layout/layoutmission/Mission";
 import Milestone from "../layout/layoutmilestone/Milestone";
+import { Layout } from "antd";
+import { Content, Header } from "antd/es/layout/layout";
+import Hader from "../components/Header/Hader";
 
 const MainRouter = () => {
   return (
-   <>
-   
-      <Routes>
-        <Route path="/" element={<Main />}>
-          <Route index element={<Home />} />
-          <Route path="Register" element={<Register />} />
-          <Route path="confirmPassword" element={<ConfirmEmail />} />
-          <Route path="completeRegister" element={<CompleteRegister />} />
-          <Route path="Login" element={<Login />} />
-          <Route path="Login/resetPassword" element={<ResetPassword />} />
-        </Route>
-        <Route element={<PrivateRoutes />}>
-          <Route path="Admin" element={<Admin />} >
-            <Route path="employees" element={<Employees/>}/>
-            <Route index element={<Mission/>}/>
-            <Route path=":IdMilestone" element={<Milestone/>}/>
-
+        
+        <Routes>
+          <Route path="/" element={<Main />}>
+            <Route index element={<Home />} />
+            <Route path="Register" element={<Register />} />
+            <Route path="confirmEmail" element={<ConfirmEmail />} />
+            <Route path="completeRegister" element={<CompleteRegister />} />
+            <Route path="Login" element={<Login />} />
+            <Route path="Login/resetPassword" element={<ResetPassword />} />
+          </Route>
+          <Route element={<PrivateRoutes />}>
+            <Route path="Admin" element={<Admin />}>
+              <Route path="employees" element={<Employees />} />
+              <Route index element={<Mission />} />
+              <Route path=":templateId" element={<Milestone />} />
             </Route>
-        </Route>
-      </Routes>
-    </>
+          </Route>
+        </Routes>
+         
+    
   );
 };
 

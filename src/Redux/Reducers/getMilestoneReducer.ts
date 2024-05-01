@@ -44,12 +44,14 @@ const getMilestoneReducer = (state = intialstate, action: any) => {
         return {
           ...state,
           isloading: false,
+          payload: action.data.Data,
           
         };
       case DELETE_MILESTONE:
         return {
           ...state,
           isloading: false,
+          payload: action.data.Data,
          
         };
     case ERRO_MILISTONE:

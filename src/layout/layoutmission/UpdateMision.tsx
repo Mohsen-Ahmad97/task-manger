@@ -4,14 +4,17 @@ import { useDispatch } from "react-redux";
 import { takeUpdatemission } from "../../Redux/ActionCreator/ActionsCreator";
 import { useSelector } from "react-redux";
 import { mission } from "../../models/General";
+import dayjs from "dayjs";
 
 const UpdateMission = (props: any) => {
+  console.log("props", props);
   const dispatch = useDispatch();
   const [form] = useForm();
+  const dataFormat = "YYYY-MM-DD HH:mm A";
   const { employee } = useSelector((state: any) => state.getempl);
 
   const onFinish: FormProps<mission>["onFinish"] = async (values: mission) => {
-    // console.log("values", values);
+    console.log("values", props.record);
     // console.log("id", props.id);
 
     await form.validateFields();
@@ -20,11 +23,11 @@ const UpdateMission = (props: any) => {
         ...values,
         EndTime: values.EndTime,
         StartTime: values.StartTime,
-        Id: props.id,
-        
+        Id: props.record.Id,
       })
     );
-     props.setopen1(false);
+
+    props.setopen1(false);
     form.resetFields();
   };
   const onFinishFailed: FormProps<mission>["onFinishFailed"] = (errorInfo) => {
@@ -38,6 +41,11 @@ const UpdateMission = (props: any) => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
+      initialValues={{
+        Name: props.record.Name,
+        StartTime: dayjs(props.record?.StartTime, dataFormat),
+        EndTime: dayjs(props.record?.EndTime, dataFormat),
+      }}
     >
       <Form.Item
         label="MissionName"
@@ -46,7 +54,7 @@ const UpdateMission = (props: any) => {
         rules={[{ required: true, message: "Please input your MissionName" }]}
         hasFeedback
       >
-        <Input placeholder={props.Name} />
+        <Input placeholder="Please input your MissionName" />
       </Form.Item>
       <Form.Item
         label="StartTime"
@@ -58,7 +66,6 @@ const UpdateMission = (props: any) => {
         <DatePicker
           showTime={{ format: "HH:mm A" }}
           format="YYYY-MM-DD HH:mm A"
-          placeholder={props.StartTime}
         />
       </Form.Item>
       <Form.Item
@@ -71,7 +78,6 @@ const UpdateMission = (props: any) => {
         <DatePicker
           showTime={{ format: "HH:mm A" }}
           format="YYYY-MM-DD HH:mm A"
-          placeholder={props.EndTime}
         />
       </Form.Item>
       <Form.Item

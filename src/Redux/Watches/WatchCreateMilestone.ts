@@ -10,11 +10,13 @@ import {
 
 function* MilestoneCreate(action: any) {
   try {
-    const data: milistone = yield Milistone.createMilistone(action.payload);
+    const data: milistone = yield Milistone.createMilistone(
+      action.payload.values
+    );
 
     yield put({ type: DATA_CREATE_MILESTONE, data });
     console.log("d", data);
-    const response: milistone = yield Milistone.getMilistone(action.pyload);
+    const response: milistone = yield Milistone.getMilistone(action.payload.id);
     yield put({ type: DATA_MILISTONE, response });
   } catch (err) {
     yield put({ type: ERRO_CREATE_MILESTONE, err });

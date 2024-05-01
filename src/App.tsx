@@ -1,13 +1,26 @@
-import Header from "./components/Header/Header";
+import { ConfigProvider, Layout, theme } from "antd";
 import MainRouter from "./router/mainRouter";
+import { useState } from "react";
+import Hader from "./components/Header/Hader";
+import { Content } from "antd/es/layout/layout";
+
 
 function App() {
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const { darkAlgorithm, compactAlgorithm } = theme;
   return (
-    <div className="App">
-      <Header />
-      <MainRouter />
-      
-    </div>
+    <ConfigProvider
+      theme={{ algorithm: darkMode ? darkAlgorithm : compactAlgorithm }}
+    >
+      <div className={darkMode ? "dark-mode App" : "Light-mode App "}>
+        <Hader DarkMode={darkMode} setDarkMode={setDarkMode} />
+        {/* <Layout  style={{background:"none"}}>
+          <Content> */}
+            <MainRouter />
+          {/* </Content>
+        </Layout> */}
+      </div>
+    </ConfigProvider>
   );
 }
 

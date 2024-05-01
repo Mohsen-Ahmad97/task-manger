@@ -16,12 +16,9 @@ import AddEmployeeModal from "../../components/Employees/AddEmployeeModal";
 import { ToastContainer, toast } from "react-toastify";
 
 const Employees = () => {
-  
-
   // console.log("s",isSuccess)
   useEffect(() => {
     dispatch(takegetEmployee());
-   
   }, []);
 
   const { t } = useTranslation();
@@ -35,7 +32,7 @@ const Employees = () => {
   const [SearchByFirstName, setSearchByFirstName] = useState("");
 
   const { isLoading, employee } = useSelector((state: any) => state.getempl);
- 
+
   const showModal1 = () => {
     setOpen1(true);
   };
@@ -84,11 +81,10 @@ const Employees = () => {
         return (
           <Space>
             <Button
+            style={{color:"green"}}
               onClick={() => {
                 showModal1();
-                setid(record.Id);
-                setFirstName(record.FirstName);
-                setLastName(record.LastName);
+               
               }}
             >
               {t("Update")}
@@ -96,16 +92,15 @@ const Employees = () => {
 
             <UpdateEmployeeModal
               open={open1}
-              id={id}
               setopen1={setOpen1}
               handelcancel1={handleCancel1}
-              FirstName={FirstName}
-              LastName={LastName}
+             data={{record}}
             />
 
             <Button
+            style={{color:"red"}}
               onClick={() => {
-                console.log(record.Id);
+                // console.log(record.Id);
                 Modal.confirm({
                   title: t("Are You Sure deete"),
                   okText: t("yes"),
@@ -134,13 +129,25 @@ const Employees = () => {
         alignItems: "center",
       }}
     >
-      <AddEmployeeModal />
-      <Input.Search
-        placeholder="serch by FirstName Or LastName"
-        onChange={(e) => {
-          setSearchByFirstName(e.target.value);
+      <Space
+        direction="horizontal"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignContent:"center",
+          alignItems:"center",
+          height:"100px"
         }}
-      ></Input.Search>
+      >
+        <AddEmployeeModal />
+        <Input.Search
+          style={{ minWidth: 200,marginLeft:50 }}
+          placeholder="serch by FirstName Or LastName"
+          onChange={(e) => {
+            setSearchByFirstName(e.target.value);
+          }}
+        />
+      </Space>
       <Table
         dataSource={employee}
         columns={columns}
@@ -156,7 +163,6 @@ const Employees = () => {
       >
         {t("Back To Main Page")}
       </Button>
-    
     </Space>
   );
 };

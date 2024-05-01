@@ -2,12 +2,17 @@ import { Button, DatePicker, Form, Input } from "antd";
 import { FormProps, useForm } from "antd/es/form/Form";
 import { milistone } from "../../models/General";
 import { useDispatch } from "react-redux";
-import {  takeUpdatemilestone } from "../../Redux/ActionCreator/ActionsCreator";
+import { takeUpdatemilestone } from "../../Redux/ActionCreator/ActionsCreator";
+import dayjs from "dayjs";
 
-const UpdateMilestone = (props: any) => {
+
+
+
+const UpdateMilestone = ({data,setopen1,Id}:any) => {
+  // console.log("values", data);
   const dispatch = useDispatch();
   const [form] = useForm();
-
+  const dataFormat = "YYYY-MM-DD HH:mm A";
   const onFinish: FormProps<milistone>["onFinish"] = async (
     values: milistone
   ) => {
@@ -16,18 +21,23 @@ const UpdateMilestone = (props: any) => {
 
     await form.validateFields();
     dispatch(
-      takeUpdatemilestone({
+      takeUpdatemilestone({values:{
         ...values,
         EndTime: values.EndTime,
         StartTime: values.StartTime,
-        Id: props.id,
-      
-      })
-      
+        Id: data.Id},Id:Id}
+      )
     );
-  
-    props.setopen1(false);
+      // form.setFieldsValue({
+      //   ...data,
+      //   description: data?.Description,
+      //   StartTime: dayjs(data?.StartTime, dataFormat),
+      //   EndTime: dayjs(data?.EndTime, dataFormat),
+      // })
+    
     form.resetFields();
+    setopen1(false);
+  
   };
   const onFinishFailed: FormProps<milistone>["onFinishFailed"] = (
     errorInfo
@@ -42,15 +52,21 @@ const UpdateMilestone = (props: any) => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
+      initialValues={{
+        ...data,
+        description: data?.Description,
+        StartTime: dayjs(data?.StartTime, dataFormat),
+        EndTime: dayjs(data?.EndTime, dataFormat),
+      }}
     >
       <Form.Item
         label="Description"
         name="description"
         style={{ width: "100%" }}
-        rules={[{ required: true, message: "Please input your MissionName" }]}
+        rules={[{ required: true, message: "Please input your Description" }]}
         hasFeedback
       >
-        <Input placeholder={props.Description} />
+        <Input placeholder="Please input your Description" />
       </Form.Item>
       <Form.Item
         label="StartTime"
@@ -61,8 +77,8 @@ const UpdateMilestone = (props: any) => {
       >
         <DatePicker
           showTime={{ format: "HH:mm A" }}
-          format="YYYY-MM-DD HH:mm A"
-        placeholder={props.StartTime}
+          format={dataFormat}
+        
         />
       </Form.Item>
       <Form.Item
@@ -74,8 +90,8 @@ const UpdateMilestone = (props: any) => {
       >
         <DatePicker
           showTime={{ format: "HH:mm A" }}
-          format="YYYY-MM-DD HH:mm A"
-          placeholder={props.EndTime}
+          format={dataFormat}
+          
         />
       </Form.Item>
       <Button type="primary" htmlType="submit" style={{ width: "70%" }}>

@@ -1,23 +1,22 @@
-import { Alert, Button, Form, Input, Space, Spin } from "antd";
+import { Alert, Button, Card, Form, Input, Space, Spin } from "antd";
 import { FormProps, useForm } from "antd/es/form/Form";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ConfirmType } from "../../models/Modules";
-import { takeInformationConfirmEmail, takeInformationResendCode } from './../../Redux/ActionCreator/ActionsCreator';
-
-
+import {
+  takeInformationConfirmEmail,
+  takeInformationResendCode,
+} from "./../../Redux/ActionCreator/ActionsCreator";
 
 const ConfirmEmail = () => {
-  const {t}=useTranslation();
+  const { t } = useTranslation();
   const [form] = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {  isLoading, isSuccess } = useSelector(
-    (state: any) => state.conf
-  );
+  const { isLoading, isSuccess } = useSelector((state: any) => state.conf);
 
   // console.log(resendMessage)
   useEffect(() => {
@@ -27,20 +26,27 @@ const ConfirmEmail = () => {
     form.resetFields();
   }, [isSuccess]);
   const onFinish: FormProps<ConfirmType>["onFinish"] = async (
-    values:ConfirmType
+    values: ConfirmType
   ) => {
     // console.log("Success:", values);
     await form.validateFields();
     dispatch(takeInformationConfirmEmail(values));
     form.resetFields();
   };
-  const onFinishFailed: FormProps<ConfirmType>["onFinishFailed"] = (errorInfo) => {
+  const onFinishFailed: FormProps<ConfirmType>["onFinishFailed"] = (
+    errorInfo
+  ) => {
     console.log("Failed:", errorInfo);
   };
   return (
-    <Space direction="vertical">
-     
+    <Space
+      direction="vertical"
+      style={{ display: "flex", alignItems: "center", alignContent: "center",marginTop:"100px" }}
+    >
       <Spin spinning={isLoading}>
+        <Card>
+
+      
         <Form
           form={form}
           style={{ maxWidth: 600 }}
@@ -53,12 +59,15 @@ const ConfirmEmail = () => {
             name="verficationCode"
             style={{ width: "100%" }}
             rules={[
-              { required: true, message: t("Please input your verficationCode") },
+              {
+                required: true,
+                message: t("Please input your verficationCode"),
+              },
               { min: 6, message: t("at least 6 characters") },
             ]}
             hasFeedback
           >
-            <Input placeholder= {t("Please input your verficationCode")} />
+            <Input placeholder={t("Please input your verficationCode")} />
           </Form.Item>
           <Form.Item style={{ textAlign: "center" }}>
             <Button
@@ -71,13 +80,8 @@ const ConfirmEmail = () => {
             </Button>
           </Form.Item>
           <Form.Item style={{ textAlign: "center" }}>
-            <Button
-              type="primary"
-              htmlType="submit"
-              style={{ width: "70%" }}
-            
-            >
-              {t("Register")}
+            <Button type="primary" htmlType="submit" style={{ width: "70%" }}>
+            Conirm Email 
             </Button>
           </Form.Item>
           <Form.Item style={{ textAlign: "center" }}>
@@ -92,7 +96,9 @@ const ConfirmEmail = () => {
             </Button>
           </Form.Item>
         </Form>
+         </Card>
       </Spin>
+     
     </Space>
   );
 };

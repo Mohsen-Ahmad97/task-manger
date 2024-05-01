@@ -1,6 +1,7 @@
 import {
   Alert,
   Button,
+  Card,
   Form,
   FormProps,
   Input,
@@ -21,12 +22,12 @@ const Register = () => {
   const [form] = useForm();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { isSuccess, isLoading } = useSelector((state: any) => state.re);
+  const { isLoading, isSuccess } = useSelector((state: any) => state.re);
 
   const navigate = useNavigate();
   useEffect(() => {
     if (isSuccess) {
-      navigate("/confirmPassword");
+      navigate("/confirmEmail");
       form.resetFields();
     }
   });
@@ -38,49 +39,64 @@ const Register = () => {
     await form.validateFields();
     localStorage.setItem("email", values.email);
     dispatch(takeInformationRegister(values));
+    form.resetFields();
   };
   const onFinishFailed: FormProps<RegisterType>["onFinishFailed"] = (
     errorInfo
   ) => {
     console.log("Failed:", errorInfo);
   };
+  const { Title } = Typography;
   return (
-    <Space direction="vertical">
+    <Space
+      direction="vertical"
+      style={{
+        display: "flex",
+        alignItems: "center",
+        alignContent: "center",
+      }}
+    >
       <Spin spinning={isLoading}>
-        <Typography
+        <Title
+          level={1}
           style={{
             marginBottom: "50px",
             textAlign: "center",
             color: "blue",
-            fontSize: "50px",
+          
           }}
         >
-          {t("Register")}
-        </Typography>
+          Create Account
+        </Title>
+
         <Form
           form={form}
           name="register"
-          style={{ maxWidth: 600 }}
+          style={{
+            maxWidth: 600,
+            display: "flex",
+            alignContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <Form.Item
-            label={t("Email")}
             name="email"
-            style={{ width: "100%" }}
+            style={{ width: "70%" }}
             rules={[
               { required: true, message: t("Please input your email") },
               { type: "email", message: t("input valaid email ") },
             ]}
             hasFeedback
           >
-            <Input placeholder={t("Please input your email")} />
+            <Input placeholder={t("Email")} />
           </Form.Item>
           <Form.Item
-            label={t("Password")}
             name="password"
-            style={{ width: "100%" }}
+            style={{ width: "70%" }}
             rules={[
               { required: true, message: t("Please input your password") },
               { min: 6 },
@@ -95,13 +111,12 @@ const Register = () => {
             ]}
             hasFeedback
           >
-            <Input.Password placeholder={t("Please input your password")} />
+            <Input.Password placeholder={t("Password")} />
           </Form.Item>
           <Form.Item
-            label={t("ConfirmPassword")}
             name="confirmPassword"
             dependencies={["password"]}
-            style={{ width: "100%" }}
+            style={{ width: "70%" }}
             rules={[
               { required: true, message: t("Please confirm your password") },
               { min: 6 },
@@ -122,24 +137,20 @@ const Register = () => {
             ]}
             hasFeedback
           >
-            <Input.Password placeholder={t("Please confirm your password")} />
+            <Input.Password placeholder={t("ConfirmPassword")} />
           </Form.Item>
           <Form.Item style={{ textAlign: "center" }}>
-            <Button type="primary" htmlType="submit" style={{ width: "70%" }}>
-              {t("Register")}
+            <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+              Create Account
             </Button>
           </Form.Item>
-          <Form.Item style={{ textAlign: "center" }}>
-            <Button
-              type="primary"
-              style={{ width: "70%" }}
-              onClick={() => {
-                navigate("/");
-              }}
-            >
-              {t("Back To Main Page")}
-            </Button>
-          </Form.Item>
+          <Button
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Back To Mian page
+          </Button>
         </Form>
       </Spin>
     </Space>

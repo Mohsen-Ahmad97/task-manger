@@ -10,11 +10,11 @@ import {
 
 function* MilestonenUpdate(action: any) {
   try {
-    const data: milistone = yield Milistone.updateMilistone(action.payload);
+    const data: milistone = yield Milistone.updateMilistone(action.payload.values);
 
     yield put({ type: UPDATE_MILESTONE, data });
     console.log("d", data);
-    const response: milistone = yield Milistone.getMilistone(action.payload);
+    const response: milistone = yield Milistone.getMilistone(action.payload.Id);
     yield put({ type: DATA_MILISTONE, response });
     console.log("d", response);
   } catch (err) {

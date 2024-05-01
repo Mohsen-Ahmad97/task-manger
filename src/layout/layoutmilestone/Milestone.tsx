@@ -4,12 +4,11 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { milistone } from "../../models/General";
 import { takeGetMilistone } from "../../Redux/ActionCreator/ActionsCreator";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AddMilestoneModal from "./AddMilestoneModal";
 import UpdateMilestoneModal from "./UpdateMilestoneModal";
 import { takeDeletemilestone } from "./../../Redux/ActionCreator/ActionsCreator";
-
 
 const Milestone = () => {
   const [open, setopen] = useState(false);
@@ -18,7 +17,7 @@ const Milestone = () => {
   const [EndTime, setEndTime] = useState("");
   const [Description, setDescription] = useState("");
   const [id, setid] = useState("");
-  const  navigate=useNavigate()
+  const navigate = useNavigate();
 
   const showModal = () => {
     setopen(true);
@@ -32,23 +31,20 @@ const Milestone = () => {
   const handelcancel1 = () => {
     setopen1(false);
   };
-const { IdMilestone }: any = useParams();
-  // console.log("id is ",Id)
+
+  let [searchParams] = useSearchParams();
+  let templateId = Number(searchParams.get("templateId"));
+  console.log("id is ", templateId);
   const dispatch = useDispatch();
-  const { isSuccess } = useSelector((state: any) => state.message);
 
   useEffect(() => {
-    
-    dispatch(takeGetMilistone(IdMilestone));
+    if (templateId) {
+      dispatch(takeGetMilistone(templateId));
+    }
+  }, [templateId]);
+  const { isSuccess } = useSelector((state: any) => state.message);
+  const { payload, isloading } = useSelector((state: any) => state.millistone);
 
-  
-  }, [isSuccess]);
-  const { payload, isloading } = useSelector(
-    (state: any) => state.millistone
-    
-  );
-
-  
   console.log(payload);
   const columns: TableProps<milistone>["columns"] = [
     {
@@ -80,27 +76,23 @@ const { IdMilestone }: any = useParams();
         return (
           <Space>
             <Button
+              style={{ color: "green" }}
               onClick={() => {
-                //  console.log("id is :",record.Id)
-                setid(record.Id);
+                // console.log("id is :", record.Id);
                 showModal1();
-                setStartTime(record.StartTime);
-                setEndTime(record.EndTime);
-                setDescription(record.Description)
               }}
             >
               Update
             </Button>
             <UpdateMilestoneModal
-              id={id}
               open1={open1}
               handelcancel1={handelcancel1}
               setopen1={setopen1}
-              StartTime={StartTime}
-              EndTime={EndTime}
-              Description={Description}
+              data={record}
+              Id={templateId}
             />
             <Button
+              style={{ color: "red" }}
               onClick={() => {
                 // console.log(record.Id);
                 Modal.confirm({
@@ -109,7 +101,11 @@ const { IdMilestone }: any = useParams();
                   cancelText: "No",
                   okType: "danger",
                   onOk: () => {
-                    dispatch(takeDeletemilestone(record.Id));
+                    dispatch(
+                      takeDeletemilestone(
+                         { id: record.Id, Id: templateId },
+                      )
+                    );
                   },
                 });
               }}
@@ -132,7 +128,7 @@ const { IdMilestone }: any = useParams();
         open={open}
         handelcancel={handelcancel}
         setopen={setopen}
-        id={IdMilestone}
+        id={templateId}
       />
       <Table
         style={{ width: "80vw", margin: "20px auto," }}
@@ -140,14 +136,16 @@ const { IdMilestone }: any = useParams();
         dataSource={payload}
         columns={columns}
       />
-       <Button
-          type="primary"
-          style={{ textAlign: "center", marginTop: "20px" }}
-          onClick={() => {
-            navigate("/Admin");
-          }}
-        > Back to Mission Page</Button>
-   
+      <Button
+        type="primary"
+        style={{ textAlign: "center", marginTop: "20px" }}
+        onClick={() => {
+          navigate("/Admin");
+        }}
+      >
+        {" "}
+        Back to Mission Page
+      </Button>
     </Space>
   );
 };

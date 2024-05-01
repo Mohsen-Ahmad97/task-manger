@@ -38,7 +38,7 @@ const Mission = () => {
   const showModal2 = () => {
     setopen2(true);
   };
-  
+
   useEffect(() => {
     dispatch(takeMission());
   }, [dispatch]);
@@ -74,28 +74,23 @@ const Mission = () => {
         return (
           <Space>
             <Button
+              style={{ color: "green" }}
               onClick={() => {
-                //  console.log("id is :",record.Id)
-                setid(record.Id);
+                 console.log("record :",record.Id)
+                   
                 showModal1();
-                setStartTime(record.StartTime);
-                setEndTime(record.EndTime);
-                setName(record.Name);
               }}
             >
               Update
             </Button>
             <UpdateMissionModal
-              id={id}
               open1={open1}
               handelcancel1={handelcancel1}
               setopen1={setopen1}
-              StartTime={StartTime}
-              EndTime={EndTime}
-              Name={Name}
+              record={record}
             />
             <Button
-              type="primary"
+              style={{ color: "red" }}
               onClick={() => {
                 console.log(record.Id);
                 Modal.confirm({
@@ -112,9 +107,9 @@ const Mission = () => {
               Delete
             </Button>
             <Button
-              type="default"
+              style={{ color: "blue" }}
               onClick={() => {
-                navigate(`/Admin/${record.Id}`);
+                navigate(`/Admin/mission?templateId=${record.Id}`);
                 showModal2();
               }}
             >
@@ -128,23 +123,40 @@ const Mission = () => {
   return (
     <Space
       direction="vertical"
-      style={{ alignItems: "center", display: "flex", width: "100%" }}
+      style={{
+        alignItems: "center",
+        display: "flex",
+        width: "100%",
+        alignContent: "center",
+      }}
     >
-      <Button onClick={showModal}> Create Mission</Button>
-      <AddMissionModal
-        open={open}
-        handelcancel={handelcancel}
-        setopen={setopen}
-      />
+      <Space
+        style={{
+          alignItems: "center",
+          display: "flex",
+          alignContent: "center",
+        }}
+      >
+        <Button onClick={showModal} style={{ marginTop: 10 }}>
+          {" "}
+          Create Mission
+        </Button>
+        <AddMissionModal
+          open={open}
+          handelcancel={handelcancel}
+          setopen={setopen}
+        />
+      </Space>
       <Table
         style={{ width: "80vw", margin: "20px auto," }}
         loading={isloading}
         dataSource={payload}
         columns={columns}
+        className="table"
       />
       <Button
         type="primary"
-        style={{ width: "100%" }}
+        style={{ marginBottom: 20 }}
         onClick={() => {
           navigate("/");
         }}

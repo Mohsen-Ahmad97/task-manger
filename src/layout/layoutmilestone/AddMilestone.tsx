@@ -3,7 +3,7 @@ import { FormProps, useForm } from "antd/es/form/Form";
 
 import { useDispatch } from "react-redux";
 import { milistone } from "../../models/General";
-import { takeAddmilestone } from "../../Redux/ActionCreator/ActionsCreator";
+import { takeAddmilestone, takeGetMilistone } from "../../Redux/ActionCreator/ActionsCreator";
 
 const AddMilestone = (props: any) => {
   const dispatch = useDispatch();
@@ -15,13 +15,14 @@ const AddMilestone = (props: any) => {
 
     await form.validateFields();
     dispatch(
-      takeAddmilestone({
+      takeAddmilestone({values:{
         ...values,
         EndTime: values.EndTime,
         StartTime: values.StartTime,
         taskId: props.id,
-      })
+      },id:props.id})
     );
+   
 
     props.setopen(false);
     form.resetFields();

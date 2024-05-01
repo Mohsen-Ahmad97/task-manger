@@ -9,11 +9,12 @@ import {
 } from "../Actions/Actions";
 
 function* MilestoneDelete(action: any) {
+  console.log(action)
   try {
-    const data: milistone = yield Milistone.deleteMilistone(action.payload)
+    const data: milistone = yield Milistone.deleteMilistone(action.payload.id)
     yield put({ type: DELETE_MILESTONE, data });
     console.log("d", data);
-    const response:milistone = yield Milistone.getMilistone(action.payload)
+    const response:milistone = yield Milistone.getMilistone(action.payload.Id)
       yield put({ type: DATA_MILISTONE, response});
   } catch (err) {
     yield put({ type: ERRO_DELETE_MILESTONE, err });
