@@ -2,14 +2,7 @@ import { Modal, Space } from "antd";
 import UpdateEmployee from "./UpdateEmployee";
 import { useTranslation } from "react-i18next";
 
-const UpdateEmployeeModal = ({
-  open,
-  handelcancel1,
-  id,
-  setopen1,
-  FirstName,
-  LastName,
-}: any) => {
+const UpdateEmployeeModal = ({ open, handelcancel1, setopen1, data }: any) => {
   const { t } = useTranslation();
   return (
     <Space>
@@ -17,14 +10,7 @@ const UpdateEmployeeModal = ({
         open={open}
         title={t("Update Employee")}
         onCancel={handelcancel1}
-        footer={[
-          <UpdateEmployee
-            id={id}
-            setopen1={setopen1}
-            FirstName={FirstName}
-            LastName={LastName}
-          />,
-        ]}
+        footer={[<UpdateEmployee setopen1={setopen1} data={data} />]}
       />
     </Space>
   );

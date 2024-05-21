@@ -1,6 +1,7 @@
 import {
   Alert,
   Button,
+  Card,
   Form,
   FormProps,
   Input,
@@ -28,10 +29,10 @@ const Login = () => {
     (state: any) => state.log
   );
 
-
+const {Title}=Typography
   useEffect(() => {
     if (isSuccess) {
-      navigate("/employees");
+      navigate("/Admin");
       form.resetFields();
     }
   }, [isSuccess]);
@@ -49,10 +50,12 @@ const Login = () => {
   };
   return (
     <Spin spinning={isLoading}>
-      <Space direction="vertical" style={{ width: "80%" }}>
+      <Space direction="vertical" style={{width:"100%",height:"100%" }}>
     
+  <Card>
 
-        <Typography
+ 
+        <Title
           style={{
             marginBottom: "50px",
             textAlign: "center",
@@ -61,11 +64,12 @@ const Login = () => {
           }}
         >
           {t("Login")}
-        </Typography>
+        </Title>
         <Form
           form={form}
           name="login"
-          style={{ maxWidth: 600 }}
+
+          style={{ maxWidth: 600 ,display:"flex",flexDirection:"column"}}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
@@ -73,7 +77,8 @@ const Login = () => {
           <Form.Item
             label={t("Email")}
             name="email"
-            style={{ width: "100%" }}
+            style={{ width: "100%",display:"flex",flexDirection:"column"}}
+            
             rules={[
               { required: true, message: t("Please input your email") },
               { type: "email", message: t("input valaid email ") },
@@ -89,12 +94,7 @@ const Login = () => {
             rules={[
               { required: true, message: t("Please input your password") },
               { min: 6 },
-              {
-                pattern: new RegExp(
-                  /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?!.* ).{8,16}$/
-                ),
-                message: t("passord should contain characters such A 9 A @"),
-              },
+             
             ]}
             hasFeedback
           >
@@ -140,6 +140,7 @@ const Login = () => {
             </Button>
           </Form.Item>
         </Form>
+        </Card>
       </Space>
     </Spin>
   );

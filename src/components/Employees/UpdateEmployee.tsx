@@ -6,7 +6,8 @@ import { UpdateEmployeeType } from "../../models/Modules";
 import { useSelector } from "react-redux";
 import { takeUpdateEmployees } from "../../Redux/ActionCreator/ActionsCreator";
 
-const UpdateEmployee = (props: any) => {
+const UpdateEmployee = ({data,setopen1}: any) => {
+  console.log(data)
   const { isLoading } = useSelector((state: any) => state.getempl);
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -16,9 +17,13 @@ const UpdateEmployee = (props: any) => {
   ) => {
     // console.log("Success:", values);
     await form.validateFields();
-    dispatch(takeUpdateEmployees({ ...values, id: props.id }));
-    props.setopen1(false);
+    form.setFieldsValue({...data,firstName:data.record.FirstName,
+      lastName:data.record.LastName
+    })
+    dispatch(takeUpdateEmployees({ ...values, id:data.record.Id }));
     form.resetFields();
+    setopen1(false);
+  
   };
   const onFinishFailed: FormProps<UpdateEmployeeType>["onFinishFailed"] = (
     errorInfo
@@ -34,6 +39,9 @@ const UpdateEmployee = (props: any) => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        initialValues={{...data,firstName:data.record.FirstName,
+          lastName:data.record.LastName
+        }}
       >
         <Form.Item
           label={t("FirstName")}
@@ -44,7 +52,7 @@ const UpdateEmployee = (props: any) => {
           ]}
           hasFeedback
         >
-          <Input placeholder={props.FirstName} />
+          <Input placeholder={t("Please input your firstName")} />
         </Form.Item>
         <Form.Item
           label={t("LastName")}
@@ -55,7 +63,7 @@ const UpdateEmployee = (props: any) => {
           ]}
           hasFeedback
         >
-          <Input placeholder={props.LastName} />
+          <Input placeholder={t("Please input  your lastName")} />
         </Form.Item>
         <Form.Item style={{ textAlign: "center" }}>
           <Button type="primary" htmlType="submit" style={{ width: "70%" }}>

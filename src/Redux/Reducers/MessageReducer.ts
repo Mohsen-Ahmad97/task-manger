@@ -2,14 +2,23 @@ import {
   DATA_ADD_EMPLOYEE,
   DATA_COMPLETE_REGISTER,
   DATA_CONFIRMEMAIL,
+  DATA_CREATE_MILESTONE,
+  DATA_CREATE_MISSION,
   DATA_DELETE_EMPLOYEE,
   DATA_EMPLOYEE,
   DATA_FORGET_PASSWORD,
   DATA_LOGIN,
+  DATA_MILISTONE,
+  DATA_MISSION,
   DATA_REGISTER,
   DATA_RESENDCODE,
   DATA_RESET_PASSWORD,
   DATA_UPDATE_EMPLOYEE,
+  DELETE_MILESTONE,
+  DELETE_MISSION,
+  GET_DATA_MILISTONE,
+  UPDATE_MILESTONE,
+  UPDATE_MISSION,
 } from "../Actions/Actions";
 
 interface state {
@@ -34,7 +43,6 @@ const MessageReducer = (state = initial, action: any) => {
     case DATA_LOGIN:
       return {
         ...state,
-        message: action.response.Message,
         isSuccess: action.response.Code === 200,
       };
     case DATA_RESENDCODE:
@@ -83,6 +91,56 @@ const MessageReducer = (state = initial, action: any) => {
         message: action.response.Message,
         isSuccess: action.response.Code === 200,
       };
+    case DATA_MISSION:
+      return {
+        ...state,
+        isSuccess: action.response.Code===200,
+   
+      };
+    case UPDATE_MISSION:
+      return {
+        ...state,
+        message: action.data.Message,
+        isSuccess: action.data.Code===200,
+      };
+      case DELETE_MISSION:
+        return {
+          ...state,
+          message: action.data.Message,
+          isSuccess:action.data.Code===200
+        };
+      case DATA_CREATE_MISSION:
+        return {
+          ...state,
+          message: action.data.Message,
+          isSuccess: action.data.Code===200,
+        };
+  
+      case DATA_CREATE_MILESTONE:
+        return {
+          ...state,
+          payload: action.data.Data,
+          message: action.data.Message,
+          isSuccess: action.data.Code===200,
+        };
+    
+        case DATA_MILISTONE:
+          return {
+            ...state,
+            isSuccess:action.response.Code===200
+          };
+      case UPDATE_MILESTONE:
+        return {
+          ...state,
+          message: action.data.Message,
+          isSuccess:action.data.Code===200
+        };
+      case DELETE_MILESTONE:
+        return {
+          ...state,
+          message: action.data.Message,
+          isSuccess:action.data.Code===200
+        };
 
     default:
       return state;

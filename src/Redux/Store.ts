@@ -16,6 +16,8 @@ import forgetPasswordReducer from "./Reducers/ForgetPasswordReducer";
 import ResetPassordReducer from "./Reducers/ResetPasswordReducer";
 import getEmployeeReducer from "./Reducers/getEmployeeReducer";
 import MessageReducer from "./Reducers/MessageReducer";
+import getMissionReducer from "./Reducers/getMissionReducer";
+import getMilestoneReducer from "./Reducers/getMilestoneReducer";
 const sagaMiddleware = createSagaMiddleware();
 let middleware = [sagaMiddleware];
 
@@ -28,7 +30,9 @@ const rootreducer = combineReducers({
   forg:forgetPasswordReducer,
   reset:ResetPassordReducer,
   getempl:getEmployeeReducer,
-  message:MessageReducer
+  message:MessageReducer,
+  miss:getMissionReducer,
+  millistone:getMilestoneReducer
 });
 const store = createStore(
   rootreducer,

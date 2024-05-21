@@ -1,4 +1,4 @@
-import { Alert, Button, Form, Input, Space, Spin, Typography } from "antd";
+import { Alert, Button, Card, Form, Input, Space, Spin, Typography } from "antd";
 import { FormProps, useForm } from "antd/es/form/Form";
 import { useNavigate } from "react-router-dom";
 import { takeInformationCompleteRegister } from "../../Redux/ActionCreator/ActionsCreator";
@@ -29,6 +29,9 @@ const CompleteRegister = () => {
     console.log("Failed:", errorInfo);
   };
   return (
+    <Card>
+
+  
     <Spin spinning={isLoading}>
       <Space direction="vertical" style={{ width: "90%" }}>
         <Typography
@@ -90,6 +93,7 @@ const CompleteRegister = () => {
         </Form>
       </Space>
     </Spin>
+    </Card>
   );
 };
 
