@@ -32,28 +32,21 @@ const getMilestoneReducer = (state = intialstate, action: any) => {
         isloading: false,
         payload: action.response.Data,
       };
-      case DATA_CREATE_MILESTONE:
-        return {
-          ...state,
-          isloading: false,
-          payload: action.data.Data,
-         
-         
-        };
-      case UPDATE_MILESTONE:
-        return {
-          ...state,
-          isloading: false,
-          payload: action.data.Data,
-          
-        };
-      case DELETE_MILESTONE:
-        return {
-          ...state,
-          isloading: false,
-          payload: action.data.Data,
-         
-        };
+    case DATA_CREATE_MILESTONE:
+      return {
+        ...state,
+        isloading: false,
+      };
+    case UPDATE_MILESTONE:
+      return {
+        ...state,
+        isloading: false,
+      };
+    case DELETE_MILESTONE:
+      return {
+        ...state,
+        isloading: false,
+      };
     case ERRO_MILISTONE:
       return { ...state, isloading: false };
     default:

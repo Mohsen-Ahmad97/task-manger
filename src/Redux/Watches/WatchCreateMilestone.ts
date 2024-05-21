@@ -16,8 +16,9 @@ function* MilestoneCreate(action: any) {
 
     yield put({ type: DATA_CREATE_MILESTONE, data });
     console.log("d", data);
-    const response: milistone = yield Milistone.getMilistone(action.payload.id);
+    const response: milistone = yield Milistone.getMilistone(action.payload.Id);
     yield put({ type: DATA_MILISTONE, response });
+    console.log("res", response);
   } catch (err) {
     yield put({ type: ERRO_CREATE_MILESTONE, err });
     console.log("error", err);

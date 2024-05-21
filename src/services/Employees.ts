@@ -5,6 +5,7 @@ import { AddEmployeeType, UpdateEmployeeType } from "../models/Modules";
 export class Employee {
   static async getEmployee(): Promise<IcomonResponse> {
     return await api
+    
       .get("/api/Employee/Employees")
       .then(function (response) {
         let result: IcomonResponse = response?.data;

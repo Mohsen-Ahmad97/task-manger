@@ -12,7 +12,7 @@ const Main = () => {
      if(!message ){
      toast.dismiss()
      }
-     else if (isSuccess) {
+     else if (isSuccess && message) {
       toast.success(message);
     } else toast.error(message);
   },[isSuccess,message]);

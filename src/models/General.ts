@@ -1,3 +1,5 @@
+import { Employeeteam } from "./Modules";
+
 //type for Auth
 export interface data {
   Token: string;
@@ -34,4 +36,29 @@ export interface milistone {
   EndTime:any;
   Id: number;
   taskId?: number,
+}
+export interface teamdata {
+  
+
+Id: number,
+Name: string,
+EmployeeTeam:Employeeteam []
+}
+//type Team 
+export interface team {
+  Code?: number;
+  Message?: string;
+  Result?: boolean;
+  Data?:teamdata;
+  Id?: number;
+  Name?:string;
+  values:values
+  Milestones?: milistone[];
+  EmployeesMissions?: any[];
+  EmployeeIds?: number[];
+}
+export interface values {
+  IdTeam?: string, 
+  IdEmploe?:string,
+  id?:string
 }

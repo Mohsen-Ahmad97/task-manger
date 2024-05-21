@@ -6,15 +6,15 @@ import AddMission from './AddMission'
 
 
 
-const AddMissionModal = ({open,setopen,handelcancel}:any) => {
+const AddMissionModal = ({open1,setopen1,handelcancel1}:any) => {
   return (
     <Space>
     <Modal
-      open={open}
+      open={open1}
       title="create mission "
-      onCancel={handelcancel}
+      onCancel={handelcancel1}
       footer={[
-        <AddMission setopen={setopen}   />,
+        <AddMission setopen={setopen1}   />,
       ]}
     />
   </Space>

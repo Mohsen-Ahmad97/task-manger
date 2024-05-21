@@ -13,33 +13,21 @@ import {
 } from "../../Redux/ActionCreator/ActionsCreator";
 import UpdateEmployeeModal from "../../components/Employees/UpdateEmployeeModal";
 import AddEmployeeModal from "../../components/Employees/AddEmployeeModal";
-import { ToastContainer, toast } from "react-toastify";
 
 const Employees = () => {
   // console.log("s",isSuccess)
-  useEffect(() => {
-    dispatch(takegetEmployee());
-  }, []);
 
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [open1, setOpen1] = useState(false);
-  const [id, setid] = useState("");
-  const [FirstName, setFirstName] = useState("");
-  const [LastName, setLastName] = useState("");
   const [SearchByFirstName, setSearchByFirstName] = useState("");
 
   const { isLoading, employee } = useSelector((state: any) => state.getempl);
+  useEffect(() => {
+    dispatch(takegetEmployee());
+  }, [dispatch]);
 
-  const showModal1 = () => {
-    setOpen1(true);
-  };
-
-  const handleCancel1 = () => {
-    setOpen1(false);
-  };
   const columns: TableProps<employees>["columns"] = [
     {
       title: t("ID"),
@@ -77,28 +65,13 @@ const Employees = () => {
       title: t("Action"),
       key: "5",
       render: (record) => {
-        // console.log(record)
+        console.log(record);
         return (
           <Space>
-            <Button
-            style={{color:"green"}}
-              onClick={() => {
-                showModal1();
-               
-              }}
-            >
-              {t("Update")}
-            </Button>
-
-            <UpdateEmployeeModal
-              open={open1}
-              setopen1={setOpen1}
-              handelcancel1={handleCancel1}
-             data={{record}}
-            />
+            <UpdateEmployeeModal data={ record } />
 
             <Button
-            style={{color:"red"}}
+              style={{ color: "red" }}
               onClick={() => {
                 // console.log(record.Id);
                 Modal.confirm({
@@ -134,14 +107,14 @@ const Employees = () => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          alignContent:"center",
-          alignItems:"center",
-          height:"100px"
+          alignContent: "center",
+          alignItems: "center",
+          height: "100px",
         }}
       >
         <AddEmployeeModal />
         <Input.Search
-          style={{ minWidth: 200,marginLeft:50 }}
+          style={{ minWidth: 200, marginLeft: 50 }}
           placeholder="serch by FirstName Or LastName"
           onChange={(e) => {
             setSearchByFirstName(e.target.value);

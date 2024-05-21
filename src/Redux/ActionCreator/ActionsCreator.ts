@@ -9,10 +9,15 @@ import {
   UpdateEmployeeType,
 } from "../../models/Modules";
 import {
+  ADD_EMPLOYEE_TEAM,
+  ADD_EMPLOYEE_TEAM_DATA,
   CREATE_DATA_MILESTONE,
   CREATE_DATA_MISSION,
   DELETE_DATA_MILESTONE,
   DELETE_DATA_MISSION,
+  DELETE_EMPLOYEE_TEAM_DATA,
+  DELETE_TEAM,
+  FILTER_DATA_LIST,
   GET_ADD_EMPLOYEE,
   GET_DATA_COMPLETE_REGISTER,
   GET_DATA_CONFIRMEMAIL,
@@ -26,10 +31,16 @@ import {
   GET_DATA_RESET_PASSWORD,
   GET_DELETE_EMPLOYEE,
   GET_UPDATE_EMPLOYEE,
+  SEARCH_DATA_LIST,
+  SEARCH_TEAM,
+  TAEM_CREATE,
+  TAEM_DATA,
   UPDATE_DATA_MILESTONE,
   UPDATE_DATA_MISSION,
+  UPDATE_TEAM,
+
 } from "../Actions/Actions";
-import { milistone, mission } from "../../models/General";
+import { mission, team, values  } from "../../models/General";
 
 export function takeInformationRegister(data: RegisterType) {
   return {
@@ -122,29 +133,92 @@ export function takeDeleteMission(ID: number) {
   };
 }
 export function takeGetMilistone(id: number) {
-  // console.log(id);
   return {
     type: GET_DATA_MILISTONE,
     payload: id,
   };
 }
-export function takeAddmilestone(data:any) {
+export function takeAddmilestone(data: any) {
   return {
     type: CREATE_DATA_MILESTONE,
     payload: data,
   };
 }
 
-export function takeUpdatemilestone(values:any) {
+export function takeUpdatemilestone(values: any) {
   return {
     type: UPDATE_DATA_MILESTONE,
     payload: values,
-   
   };
 }
-export function takeDeletemilestone(data:any) {
+export function takeDeletemilestone(data: any) {
   return {
     type: DELETE_DATA_MILESTONE,
-    payload: data
+    payload: data,
   };
 }
+export function changelist(values: any) {
+  return {
+    type: SEARCH_DATA_LIST,
+    data: values,
+  };
+}
+export function filtermission(values: any) {
+  return {
+    type: FILTER_DATA_LIST,
+    data: values,
+  };
+}
+export function getteam() {
+  return {
+    type: TAEM_DATA,
+  };
+}
+export function addteam(values: team) {
+  return {
+    type: TAEM_CREATE,
+    data: values,
+  };
+}
+export function Deleteteam(id: number) {
+  return {
+    type: DELETE_TEAM,
+    data: id,
+  };
+}
+
+export function UpdateTeam(values: team) {
+  return {
+    type: UPDATE_TEAM,
+    data: values,
+  };
+}
+export function addemployeetoteam(values: team) {
+
+  return {
+    type: ADD_EMPLOYEE_TEAM_DATA,
+    data: values,
+  };
+}
+
+export function Deleteemployeeteam(values:team) {
+
+  return {
+    type: DELETE_EMPLOYEE_TEAM_DATA,
+    data: values,
+  };
+}
+export function searchByname(values: team) {
+
+  return {
+    type: SEARCH_TEAM,
+    data: values,
+  };
+}
+// export function switchByname(values: any) {
+
+//   return {
+//     type: SWITCH_TEAM,
+//     data: values,
+//   };
+// }

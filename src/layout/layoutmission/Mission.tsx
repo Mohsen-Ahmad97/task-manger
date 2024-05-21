@@ -1,34 +1,38 @@
-import { Button, Modal, Space, Table, TableProps, notification } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
+  changelist,
+  filtermission,
   takeDeleteMission,
   takeMission,
 } from "../../Redux/ActionCreator/ActionsCreator";
 import { useSelector } from "react-redux";
-import AddMissionModal from "./AddMissionModal";
+import {
+  Button,
+  Card,
+  Form,
+  Input,
+  List,
+  Modal,
+  Select,
+  Space,
+  Spin,
+  Switch,
+  Typography,
+} from "antd";
 import UpdateMissionModal from "./UpdateMissionModal";
-import { mission } from "../../models/General";
-import { useNavigate } from "react-router-dom";
+import AddMissionModal from "./AddMissionModal";
+import Milestone from "../layoutmilestone/Milestone";
+
 
 const Mission = () => {
-  const dispatch = useDispatch();
-  const [open, setopen] = useState(false);
+
   const [open1, setopen1] = useState(false);
   const [open2, setopen2] = useState(false);
-
-  const [StartTime, setStartTime] = useState("");
-  const [EndTime, setEndTime] = useState("");
-  const [Name, setName] = useState("");
-  const navigate = useNavigate();
-
   const [id, setid] = useState("");
-  const showModal = () => {
-    setopen(true);
-  };
-  const handelcancel = () => {
-    setopen(false);
-  };
+  const dispatch = useDispatch();
+
+ 
   const showModal1 = () => {
     setopen1(true);
   };
@@ -38,133 +42,141 @@ const Mission = () => {
   const showModal2 = () => {
     setopen2(true);
   };
-
+  const handelcancel2 = () => {
+    setopen2(false);
+  };
   useEffect(() => {
     dispatch(takeMission());
   }, [dispatch]);
   const { payload, isloading } = useSelector((state: any) => state.miss);
-
-  const columns: TableProps<mission>["columns"] = [
-    {
-      title: "MissionName",
-      dataIndex: "Name",
-      key: "1",
-    },
-    {
-      title: "StartTime",
-      dataIndex: "StartTime",
-      key: "2",
-    },
-    {
-      title: "EndTime",
-      dataIndex: "EndTime",
-      key: "3",
-    },
-    {
-      title: "Employee Id",
-      dataIndex: "Id",
-      key: "4",
-      hidden: true,
-    },
-    {
-      title: "Action",
-      key: "4",
-      render: (record) => {
-        // console.log(record)
-        return (
-          <Space>
-            <Button
-              style={{ color: "green" }}
-              onClick={() => {
-                 console.log("record :",record.Id)
-                   
-                showModal1();
-              }}
-            >
-              Update
-            </Button>
-            <UpdateMissionModal
-              open1={open1}
-              handelcancel1={handelcancel1}
-              setopen1={setopen1}
-              record={record}
-            />
-            <Button
-              style={{ color: "red" }}
-              onClick={() => {
-                console.log(record.Id);
-                Modal.confirm({
-                  title: "Are You Sure deete",
-                  okText: "yes",
-                  cancelText: "No",
-                  okType: "danger",
-                  onOk: () => {
-                    dispatch(takeDeleteMission(record.Id));
-                  },
-                });
-              }}
-            >
-              Delete
-            </Button>
-            <Button
-              style={{ color: "blue" }}
-              onClick={() => {
-                navigate(`/Admin/mission?templateId=${record.Id}`);
-                showModal2();
-              }}
-            >
-              Milestones
-            </Button>
-          </Space>
-        );
-      },
-    },
-  ];
+  const [Ascing, setAscing] = useState(true);
+  // console.log("dar", data);
+  const handelSearch = (e: any) => {
+    dispatch(changelist(e.target.value));
+  };
+  const handelFilter = (e: any) => {
+    dispatch(filtermission(e));
+  };
+  const updatedatasource= Ascing ?[...payload]:[...payload].reverse();
   return (
-    <Space
-      direction="vertical"
-      style={{
-        alignItems: "center",
-        display: "flex",
-        width: "100%",
-        alignContent: "center",
-      }}
-    >
-      <Space
-        style={{
-          alignItems: "center",
-          display: "flex",
-          alignContent: "center",
-        }}
-      >
-        <Button onClick={showModal} style={{ marginTop: 10 }}>
-          {" "}
-          Create Mission
-        </Button>
-        <AddMissionModal
-          open={open}
-          handelcancel={handelcancel}
-          setopen={setopen}
-        />
-      </Space>
-      <Table
-        style={{ width: "80vw", margin: "20px auto," }}
-        loading={isloading}
-        dataSource={payload}
-        columns={columns}
-        className="table"
-      />
+    <Spin spinning={isloading}>
       <Button
         type="primary"
-        style={{ marginBottom: 20 }}
+        style={{ position: "absolute", right: "0", margin: "30px" }}
         onClick={() => {
-          navigate("/");
+          showModal1();
         }}
       >
-        Back To Main Page
+        Add New Mission
       </Button>
-    </Space>
+      <AddMissionModal
+        open1={open1}
+        handelcancel1={handelcancel1}
+        setopen1={setopen1}
+      />
+
+      <List
+        grid={{ column: 3 }}
+        dataSource={updatedatasource}
+        className="list"
+        style={{ margin: "20px auto", width: "90%" }}
+        header={
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-evenly",
+              marginRight: "10px",
+            }}
+          >
+            <Input.Search
+              placeholder="Search By Name"
+              style={{ width: 200 }}
+              onChange={handelSearch}
+            />
+            <Space>
+              <Select onChange={handelFilter} placeholder="Sort By Name">
+                <Select.Option value="name">Name</Select.Option>
+                <Select.Option value="date">Date</Select.Option>
+              </Select>
+              <Switch
+                checkedChildren="Asc"
+                unCheckedChildren="Desc"
+                defaultChecked={Ascing}
+                onChange={setAscing}
+              ></Switch>
+            </Space>
+          </div>
+        }
+        renderItem={(item: any, index: number) => {
+          // console.log(item);
+          return (
+            <Card title={item.Name} key={index}>
+              <Form name="Mission" style={{ maxWidth: 600 }} autoComplete="off">
+                <Form.Item
+                  label="StartTime"
+                  style={{ width: "100%" }}
+                  rules={[
+                    { required: true, message: "Please input  your StartTime" },
+                  ]}
+                  hasFeedback
+                >
+                  <Typography>{item.StartTime}</Typography>
+                </Form.Item>
+                <Form.Item
+                  label="EndTime"
+                  style={{ width: "100%" }}
+                  rules={[
+                    { required: true, message: "Please input your  EndTime" },
+                  ]}
+                  hasFeedback
+                >
+                  <Typography>{item.EndTime}</Typography>
+                </Form.Item>
+              </Form>
+              <Space
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <UpdateMissionModal
+                  record={item}
+                />
+                <Button
+                  style={{ color: "red" }}
+                  onClick={() => {
+                    // console.log(record.Id);
+                    Modal.confirm({
+                      title: "Are You Sure deete",
+                      okText: "yes",
+                      cancelText: "No",
+                      okType: "danger",
+                      onOk: () => {
+                        dispatch(takeDeleteMission(item.Id));
+                      },
+                    });
+                  }}
+                >
+                  Delete
+                </Button>
+
+                <Button
+                  onClick={() => {
+                    showModal2();
+                    setid(item.Id);
+                  }}
+                >
+                  Show Milestone
+                </Button>
+                <Modal
+                  open={open2}
+                  title=" milestone "
+                  onCancel={handelcancel2}
+                  footer={[<Milestone Idel={id} />]}
+                />
+              </Space>
+            </Card>
+          );
+        }}
+      ></List>
+    </Spin>
   );
 };
-
 export default Mission;

@@ -4,7 +4,9 @@ import api from "./Api";
 export class Mission {
   static async getMission(): Promise<mission> {
     return await api
-      .get(
+      
+    
+    .get(
         "https://task-follow-up.v2202305135856227727.ultrasrv.de/api/Mission"
       )
       .then(function (response) {

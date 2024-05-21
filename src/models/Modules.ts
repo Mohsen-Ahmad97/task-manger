@@ -61,6 +61,9 @@ export interface UpdateEmployeeType {
   firstName: string;
   lastName: string;
   id: number;
+}export interface Employeeteam {
+  Id: number;
+  FirstName: string;
+  LastName: string;
 }
-
 
