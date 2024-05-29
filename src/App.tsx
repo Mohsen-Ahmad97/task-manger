@@ -4,7 +4,6 @@ import { useState } from "react";
 import Hader from "./components/Header/Hader";
 import { Content } from "antd/es/layout/layout";
 
-
 function App() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const { darkAlgorithm, compactAlgorithm } = theme;
@@ -14,11 +13,7 @@ function App() {
     >
       <div className={darkMode ? "dark-mode App" : "Light-mode App "}>
         <Hader DarkMode={darkMode} setDarkMode={setDarkMode} />
-        {/* <Layout  style={{background:"none"}}>
-          <Content> */}
-            <MainRouter />
-          {/* </Content>
-        </Layout> */}
+        <MainRouter />
       </div>
     </ConfigProvider>
   );

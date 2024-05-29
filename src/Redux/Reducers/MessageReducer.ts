@@ -1,4 +1,7 @@
+import { DELETE_TEAM_DATA, UPDATE_TEAM, UPDATE_TEAM_DATA } from "../Actions/Actions";
+
 import {
+  CREATE_DATA_TEAM,
   DATA_ADD_EMPLOYEE,
   DATA_COMPLETE_REGISTER,
   DATA_CONFIRMEMAIL,
@@ -16,7 +19,6 @@ import {
   DATA_UPDATE_EMPLOYEE,
   DELETE_MILESTONE,
   DELETE_MISSION,
-  GET_DATA_MILISTONE,
   UPDATE_MILESTONE,
   UPDATE_MISSION,
 } from "../Actions/Actions";
@@ -38,7 +40,7 @@ const MessageReducer = (state = initial, action: any) => {
       return {
         ...state,
         message: action.data.Message,
-        isSuccess: action.data.Code,
+        isSuccess: action.data.Code === 200,
       };
     case DATA_LOGIN:
       return {
@@ -94,53 +96,74 @@ const MessageReducer = (state = initial, action: any) => {
     case DATA_MISSION:
       return {
         ...state,
-        isSuccess: action.response.Code===200,
-   
+        isSuccess: action.response.Code === 200,
       };
     case UPDATE_MISSION:
       return {
         ...state,
         message: action.data.Message,
-        isSuccess: action.data.Code===200,
+        isSuccess: action.data.Code === 200,
       };
-      case DELETE_MISSION:
+    case DELETE_MISSION:
+      return {
+        ...state,
+        message: action.data.Message,
+        isSuccess: action.data.Code === 200,
+      };
+    case DATA_CREATE_MISSION:
+      return {
+        ...state,
+        message: action.data.Message,
+        isSuccess: action.data.Code === 200,
+      };
+
+    case DATA_CREATE_MILESTONE:
+      return {
+        ...state,
+        payload: action.data.Data,
+        message: action.data.Message,
+        isSuccess: action.data.Code === 200,
+      };
+
+    case DATA_MILISTONE:
+      return {
+        ...state,
+        isSuccess: action.response.Code === 200,
+      };
+    case UPDATE_MILESTONE:
+      return {
+        ...state,
+        message: action.data.Message,
+        isSuccess: action.data.Code === 200,
+      };
+    case DELETE_MILESTONE:
+      return {
+        ...state,
+        message: action.data.Message,
+        isSuccess: action.data.Code === 200,
+      };
+    case CREATE_DATA_TEAM:
+      return {
+        ...state,
+        isLoading: false,
+        message: action.data.Message,
+        isSuccess: action.data.Code === 200,
+      };
+      case UPDATE_TEAM_DATA:
+      return {
+        ...state,
+        isLoading: false,
+        message: action.data.Message,
+        isSuccess: action.data.Code === 200,
+      };
+      case DELETE_TEAM_DATA:
         return {
           ...state,
+          isLoading: false,
           message: action.data.Message,
-          isSuccess:action.data.Code===200
-        };
-      case DATA_CREATE_MISSION:
-        return {
-          ...state,
-          message: action.data.Message,
-          isSuccess: action.data.Code===200,
+          isSuccess: action.data.Code === 200,
         };
   
-      case DATA_CREATE_MILESTONE:
-        return {
-          ...state,
-          payload: action.data.Data,
-          message: action.data.Message,
-          isSuccess: action.data.Code===200,
-        };
-    
-        case DATA_MILISTONE:
-          return {
-            ...state,
-            isSuccess:action.response.Code===200
-          };
-      case UPDATE_MILESTONE:
-        return {
-          ...state,
-          message: action.data.Message,
-          isSuccess:action.data.Code===200
-        };
-      case DELETE_MILESTONE:
-        return {
-          ...state,
-          message: action.data.Message,
-          isSuccess:action.data.Code===200
-        };
 
     default:
       return state;

@@ -18,6 +18,9 @@ import { WatachCreateMilestone } from "./Watches/WatchCreateMilestone";
 import { WatachGetMilistone } from "./Watches/WatchGetMilistone";
 import { WatachUpdateMilestone } from "./Watches/WatchUpdateMilestone";
 import { WatachDeleteMilestone } from "./Watches/watchDeleteMilestone";
+import { WatachFiltermission, Watachgetsearch } from "./Watches/WatchSearch";
+import { Watachaddemployeetoteam, Watachcreatetaeam, Watachdeleteemployeetoteam, Watachdeleteteam, Watachgettaeam, Watachsearchteam, Watachupdateteam } from "./Watches/Watchteam";
+
 
 
 
@@ -41,7 +44,18 @@ function* Saga() {
     WatachGetMilistone(),
     WatachCreateMilestone(),
     WatachUpdateMilestone(),
-    WatachDeleteMilestone()
+    WatachDeleteMilestone(),
+    Watachgetsearch(),
+    WatachFiltermission(),
+    Watachgettaeam(),
+    Watachcreatetaeam(),
+    Watachdeleteteam(),
+    Watachupdateteam(),
+    Watachaddemployeetoteam(),
+    Watachdeleteemployeetoteam(),
+    Watachsearchteam(),
+
+  
     
   ]);
 }

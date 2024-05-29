@@ -1,4 +1,3 @@
-
 import { mission } from "../../models/General";
 import {
   CREATE_DATA_MISSION,
@@ -6,7 +5,9 @@ import {
   DATA_MISSION,
   DELETE_MISSION,
   ERRO_MISSION,
+  FILTER_DATA,
   GET_DATA_MISSION,
+  SEARCH_DATA,
   UPDATE_MISSION,
 } from "../Actions/Actions";
 
@@ -14,13 +15,13 @@ interface State {
   payload: mission[];
   isloading: boolean;
   message: string;
-  isSuccess:boolean,
+  isSuccess: boolean;
 }
 const intialstate: State = {
   payload: [],
   isloading: false,
   message: "",
-  isSuccess:false
+  isSuccess: false,
 };
 
 const getMissionReducer = (state = intialstate, action: any) => {
@@ -32,25 +33,33 @@ const getMissionReducer = (state = intialstate, action: any) => {
         ...state,
         isloading: false,
         payload: action.response.Data,
-       
       };
+    case SEARCH_DATA:
+      return {
+        ...state,
+        isloading: false,
+        payload: action.data,
+      };
+      case FILTER_DATA:
+        return {
+          ...state,
+          isloading: false,
+          payload: action.data,
+        };
     case UPDATE_MISSION:
       return {
         ...state,
         isloading: false,
-    
       };
-      case DATA_CREATE_MISSION:
-        return {
-          ...state,
-          isloading: false,
-      
-        };
+    case DATA_CREATE_MISSION:
+      return {
+        ...state,
+        isloading: false,
+      };
     case DELETE_MISSION:
       return {
         ...state,
         isloading: false,
-     
       };
     case ERRO_MISSION:
       return { ...state, isloading: false };

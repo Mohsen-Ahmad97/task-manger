@@ -14,6 +14,7 @@ import Milestone from "../layout/layoutmilestone/Milestone";
 import { Layout } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import Hader from "../components/Header/Hader";
+import Team from "../layout/layoutteam/Team";
 
 const MainRouter = () => {
   return (
@@ -30,6 +31,8 @@ const MainRouter = () => {
           <Route element={<PrivateRoutes />}>
             <Route path="Admin" element={<Admin />}>
               <Route path="employees" element={<Employees />} />
+              <Route path="team" element={<Team />} />
+            
               <Route index element={<Mission />} />
               <Route path=":templateId" element={<Milestone />} />
             </Route>

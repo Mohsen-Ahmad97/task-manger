@@ -44,22 +44,21 @@ body {
   width: 100vw;
 }
 
-.ant-layout .ant-layout-sider-trigger,
-.ant-layout {
-  background-color: none;
-}
+
 .anticon svg {
   color: rgb(15, 15, 15);
 }
-ant-input-affix-wrapper > input.ant-input {
-  background-color: none;
+.ant-input-affix-wrapper > input.ant-input {
+  background-color: white;
+  color: none;
 }
-/* @media (max-width: 576px) {
-  .ant-layout {
-    width: 50%;
-  }
-  .ant-table-thead:last-child{
+.ant-layout .ant-layout-sider-trigger{
+background: none;
+}
+@media (max-width: 576px) {
+  .list {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
-  } */
-/* } */
+  }
+}

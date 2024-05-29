@@ -5,7 +5,9 @@ import { useDispatch } from "react-redux";
 import { milistone } from "../../models/General";
 import { takeAddmilestone, takeGetMilistone } from "../../Redux/ActionCreator/ActionsCreator";
 
+
 const AddMilestone = (props: any) => {
+  console.log("p id is ",props.id)
   const dispatch = useDispatch();
   const [form] = useForm();
   const onFinish: FormProps<milistone>["onFinish"] = async (
@@ -19,10 +21,10 @@ const AddMilestone = (props: any) => {
         ...values,
         EndTime: values.EndTime,
         StartTime: values.StartTime,
-        taskId: props.id,
-      },id:props.id})
+        taskId:props.id,
+      },Id:props.id})
     );
-   
+   dispatch(takeGetMilistone(props.id))
 
     props.setopen(false);
     form.resetFields();

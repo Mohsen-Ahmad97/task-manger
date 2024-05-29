@@ -18,6 +18,7 @@ import getEmployeeReducer from "./Reducers/getEmployeeReducer";
 import MessageReducer from "./Reducers/MessageReducer";
 import getMissionReducer from "./Reducers/getMissionReducer";
 import getMilestoneReducer from "./Reducers/getMilestoneReducer";
+import Team from "./Reducers/Team";
 const sagaMiddleware = createSagaMiddleware();
 let middleware = [sagaMiddleware];
 
@@ -32,7 +33,8 @@ const rootreducer = combineReducers({
   getempl:getEmployeeReducer,
   message:MessageReducer,
   miss:getMissionReducer,
-  millistone:getMilestoneReducer
+  millistone:getMilestoneReducer,
+  team:Team,
 });
 const store = createStore(
   rootreducer,
