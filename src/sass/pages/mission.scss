@@ -1,0 +1,37 @@
+.mission{
+ .mission-content{
+    width: 100%;
+    display: grid;
+    grid-template-columns:repeat(1fr,auto);
+    .card{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        background-color: blueviolet;
+        padding: 20px;
+        border-radius: 10px;
+        color: #fff;
+        margin-bottom: 10PX;
+        text-align: center;
+        overflow: auto;
+        div{
+            width: 200px;
+        }
+    }
+ }
+ .ant-btn{
+    border: none;
+    outline: none;
+    background-color: transparent;
+ }
+ .actions-icons{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+ }
+}

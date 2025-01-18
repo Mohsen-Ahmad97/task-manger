@@ -1,0 +1,41 @@
+.app-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: 1;
+    direction: ltr;
+    text-align: left;
+}
+.app-content-items{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #E0E0E6;
+    overflow:auto;
+}
+.content-app{
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    // display: flex;
+    overflow-y: scroll;
+    justify-content: center;
+    // align-items: center;
+    // background-color: red;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+
+    
+
+
+}
+.app-content-rtl{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: 1;
+    direction: rtl;
+    text-align: right;
+}

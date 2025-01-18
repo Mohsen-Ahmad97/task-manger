@@ -1,0 +1,46 @@
+@media (max-width: 576px) {
+  .sidebar {
+    .items{
+      padding: 0px;
+    ul {
+   
+      li {
+        a {
+          display: none;
+        }
+      }
+    }
+  }
+  .log-out{
+    ul{
+      li{
+        a{
+          display: none;
+        }
+      }
+    }
+  }
+  }
+  .sidebarcollapse{
+    .tems{
+      padding: 0PX;
+    ul{
+   
+      li{
+        a{
+          display: none;
+        }
+      }
+    }
+  }
+  .log-out{
+    ul{
+      li{
+        a{
+          display: none;
+        }
+      }
+    }
+  }
+}
+}

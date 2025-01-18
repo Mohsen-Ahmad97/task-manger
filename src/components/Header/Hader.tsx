@@ -2,7 +2,6 @@ import { Layout, Select, Space, Switch } from "antd";
 import i18n from "../../Local/I18N";
 import { useTranslation } from "react-i18next";
 import { Header } from "antd/es/layout/layout";
-import "./Hader.css";
 
 import { MenuOutlined } from "@ant-design/icons";
 import DrawerHeade from "./DrawerHeade";

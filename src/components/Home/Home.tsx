@@ -1,6 +1,6 @@
 import "./Home.css"
-import StartLogin from "../Login/StartLogin";
-import StartRegister from "./../Register/StartRegister";
+import StartLogin from "../authentication/Login/StartLogin";
+import StartRegister from "../authentication/Register/StartRegister";
 import { Divider } from "antd";
 
 

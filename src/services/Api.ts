@@ -53,28 +53,5 @@ api.interceptors.response.use(
   }
 );
 
-//   try {
-//     // const refreshToken = localStorage.getItem("refreshToken");
-//     const response = await axios.post(
-//       "https://task-follow-up.v2202305135856227727.ultrasrv.de/api/Auth/refresh-token",
-//       {
-//         "refreshToken": localStorage.getItem("refreshToken")
-//       }
-//     );
 
-//     console.log("res", response);
-//     const { Token } = response.data.Data;
-//     const { RefreshToken } = response.data.Data;
-//     console.log("t",Token)
-//     localStorage.setItem("token", Token);
-//     localStorage.setItem("refreshToken", RefreshToken);
-//     originalRequest.headers.Authorization = `Bearer ${Token}`;
-//     console.log("org",originalRequest);
-//     return api(originalRequest);
-//   } catch (error) {}
-// }
-
-//     return Promise.reject(error);
-//   }
-// );
 export default api;

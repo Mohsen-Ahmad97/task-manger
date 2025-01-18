@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { DATA_LOGIN, ERRO_LOGIN } from "../Actions/Actions";
 import { GET_DATA_LOGIN } from "./../Actions/Actions";
 
@@ -23,6 +24,7 @@ const loginReducer = (state = initial, action: any) => {
         ...state,
         isLoading: false,
         isSuccess: action.response.Code === 200,
+
         
        
       };

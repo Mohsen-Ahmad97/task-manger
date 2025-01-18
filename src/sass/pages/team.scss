@@ -1,0 +1,26 @@
+.team{
+    display: flex;
+    flex-direction: column;
+    .employees-items{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .ant-select{
+        width: 100px;
+        margin: 10px 0;
+    }
+    .ant-card{
+        .ant-card-head-title{
+            text-align: center;
+            font-size: 18px;
+        }
+        .ant-card-body{
+            .ant-space.css-dev-only-do-not-override-160mzn0.ant-space-horizontal.ant-space-align-center.ant-space-gap-row-small {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+
+}

@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { DELETE_TEAM_DATA, UPDATE_TEAM, UPDATE_TEAM_DATA } from "../Actions/Actions";
 
 import {
@@ -52,6 +53,7 @@ const MessageReducer = (state = initial, action: any) => {
         ...state,
         message: action.data.Message,
         isSuccess: action.data.Code === 200,
+        
       };
     case DATA_COMPLETE_REGISTER:
       return { ...state, message: action.data.Message };
@@ -60,6 +62,7 @@ const MessageReducer = (state = initial, action: any) => {
         ...state,
         message: action.data.Message,
         isSuccess: action.data.Code === 200,
+      
       };
     case DATA_RESET_PASSWORD:
       return {
