@@ -17,6 +17,8 @@ transition: all 0.4s;
 
  }
  .items,.log-out{
+    display: flex;
+    justify-content: center;
     ul{
  
         li{
@@ -48,6 +50,8 @@ transition: all 0.4s;
     justify-content: space-between;
     transition: all 0.4s;
      .items,.log-out{
+        display: flex;
+        justify-content: center;
         ul{
      
             li{
@@ -74,4 +78,52 @@ transition: all 0.4s;
      }
   
   
+    }
+
+
+    html[dir='ltr']{
+        .sidebar{
+            width: 15%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s;
+            background-color: red !important;
+            .logo{
+                background-image: url("../../assests/images.png");
+                background-size: 100%;
+                height: 100px;
+                width: 100px;
+                text-align: center;
+                border-radius: 50%;
+            
+            
+             }
+             .items,.log-out{
+                display: flex;
+                justify-content: center;
+                ul{
+             
+                    li{
+                        padding: 10px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-bottom: 10px;
+                        &:hover{
+                            background-color: #a0a9bdf6;
+                            color: #fff;
+                            border-radius: 10px;
+                        }
+                    }
+                }
+                .selected{
+                    background-color: #1677ff;
+                    color: #fff;
+                    border-radius: 10px;
+                }
+             }
+            }   
     }

@@ -99,7 +99,7 @@ const Employees = () => {
   return (
     <div className="content employee">
       <div className="items">
-        <Input.Search
+        <Input
           placeholder="search"
           onChange={(e) => {
             setSearchByFirstName(e.target.value);

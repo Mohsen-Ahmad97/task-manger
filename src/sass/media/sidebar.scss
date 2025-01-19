@@ -1,7 +1,9 @@
 @media (max-width: 576px) {
   .sidebar {
-    .items{
-      padding: 0px;
+    width: 15%;
+    padding: 30px;
+    .items{padding: 0px;
+ 
     ul {
    
       li {
@@ -22,6 +24,33 @@
   }
   }
   .sidebarcollapse{
+    width: 15%;
+    .tems{
+      padding: 0PX;
+    ul{
+   
+      li{
+        a{
+          display: none;
+        }
+      }
+    }
+  }
+  .log-out{
+    ul{
+      li{
+        a{
+          display: none;
+        }
+      }
+    }
+  }
+}
+}
+@media (min-width: 576px) and (max-width:920px) {
+
+  .sidebarcollapse{
+    width: 10% !important;
     .tems{
       padding: 0PX;
     ul{
