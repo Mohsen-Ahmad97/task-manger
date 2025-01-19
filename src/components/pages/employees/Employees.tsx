@@ -74,11 +74,12 @@ const Employees = () => {
             <Button
               style={{ color: "red" }}
               onClick={() => {
-                // console.log(record.Id);
+            
                 Modal.confirm({
-                  title: t("Are You Sure deete"),
+                  title: t("Are You Sure delete this employee ?"),
                   okText: t("yes"),
                   cancelText: t("No"),
+                  className:'modal-delete',
                   okType: "danger",
                   onOk: () => {
                     dispatch(takeDeleteEmployees(record.Id));

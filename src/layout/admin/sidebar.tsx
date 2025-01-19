@@ -9,7 +9,7 @@ const Sidebar = ({ select }: any) => {
   return (
     <div className={select === "false" ? "sidebar " : "sidebarcollapse"}>
       <div className="logo">
-        <img src="../../assests/background1.png" alt="" />
+        <img src="../../assests/background.jpeg" alt="" />
       </div>
       <div className="items">
         <ul>
