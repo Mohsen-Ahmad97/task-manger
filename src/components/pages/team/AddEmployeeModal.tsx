@@ -18,7 +18,7 @@ const AddEmployeeModal = (props: any) => {
   console.log(employee);
 
   return (
-    <Space direction="horizontal">
+    <Space direction="horizontal" >
       <Button
       
         onClick={() => {
@@ -36,12 +36,13 @@ const AddEmployeeModal = (props: any) => {
         <DeleteOutlined/>
       </Button>
       <Modal
+      
         open={open1}
         onCancel={() => {
           setopen1(false);
         }}
         footer={[
-          <Space>
+          <Space className="team-delete">
             <Typography.Text>Select Employee </Typography.Text>
             <Select
               style={{ width: "100px" }}
@@ -74,6 +75,7 @@ const AddEmployeeModal = (props: any) => {
       />
 
       <Modal
+     
         open={open}
         onCancel={() => {
           setopen(false);
@@ -86,7 +88,7 @@ const AddEmployeeModal = (props: any) => {
           setopen(false);
         }}
       >
-        <Space>
+        <div className="add-team-employee">
           <Typography.Text>Select Employee </Typography.Text>
           <Select
             style={{ width: "100px" }}
@@ -102,7 +104,7 @@ const AddEmployeeModal = (props: any) => {
               );
             })}
           </Select>
-        </Space>
+        </div>
       </Modal>
     </Space>
   );

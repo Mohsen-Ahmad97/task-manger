@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const Sidebar = ({ select }: any) => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState("employee"); // Ensure the state name is correct
@@ -9,7 +8,26 @@ const Sidebar = ({ select }: any) => {
   return (
     <div className={select === "false" ? "sidebar " : "sidebarcollapse"}>
       <div className="logo">
-        <img src="../../assests/background.jpeg" alt="" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 200 200"
+          width="200"
+          height="200"
+        >
+          <rect width="200" height="200" rx="20" fill="#757575" />
+          <rect x="40" y="50" width="120" height="20" rx="5" fill="#ffffff" />
+          <rect x="40" y="85" width="90" height="20" rx="5" fill="#ffffff" />
+          <rect x="40" y="120" width="70" height="20" rx="5" fill="#ffffff" />
+          <path
+            d="M75 130 L90 145 L125 110"
+            stroke="#ffffff"
+            stroke-width="12"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span>Task Manager</span>
       </div>
       <div className="items">
         <ul>
@@ -119,7 +137,6 @@ const Sidebar = ({ select }: any) => {
               width="24"
               height="24"
               fill="currentColor"
-           
             >
               {/* Box/door */}
               <path

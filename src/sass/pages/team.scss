@@ -24,3 +24,19 @@
     }
 
 }
+
+.add-team-employee{
+ margin: 10px  0px 20px ;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+    .ant-select {
+        width: 100% !important;
+    }
+ 
+}
+.team-delete{
+    display: flex;
+    justify-content: space-between;
+  }
