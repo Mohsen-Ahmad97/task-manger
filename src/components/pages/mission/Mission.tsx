@@ -48,7 +48,7 @@ const Mission = () => {
     <Spin spinning={isloading}>
       <div className="mission">
         <div className="items">
-          <Input.Search
+          <Input
             placeholder="Search By Name"
             style={{ width: 200 }}
             onChange={handelSearch}

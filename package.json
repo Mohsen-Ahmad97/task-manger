@@ -5,6 +5,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.5.2",
     "@google-cloud/firestore": "^7.11.0",
+    "@heroicons/react": "^2.2.0",
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

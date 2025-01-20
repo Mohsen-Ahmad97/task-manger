@@ -5,9 +5,18 @@
     flex-flow: 1;
     direction: rtl;
     text-align: right;
+  
 
     .sidebarcollapse{
-
+      .logo{
+        width: 100%;
+        display: flex;
+        justify-content:center;
+        margin-right: 15px;
+            svg{
+          
+            }
+      }
         .items{
             display: flex;
             justify-content: space-between !important;
@@ -32,4 +41,17 @@
       }
     }
 
+}
+
+body[lang='false']{
+  .ant-modal{
+    direction: rtl !important;
+    text-align: right !important;
+  
+ 
+  }
+  .ant-select-item-option{
+    direction: rtl !important;
+    text-align: right !important;
+  } 
 }

@@ -53,7 +53,28 @@ const {Title}=Typography
       <div className="login">
     
   <Card>
-
+  <div className="logo">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 200 200"
+          width="200"
+          height="200"
+        >
+          <rect width="200" height="200" rx="20" fill="#757575" />
+          <rect x="40" y="50" width="120" height="20" rx="5" fill="#ffffff" />
+          <rect x="40" y="85" width="90" height="20" rx="5" fill="#ffffff" />
+          <rect x="40" y="120" width="70" height="20" rx="5" fill="#ffffff" />
+          <path
+            d="M75 130 L90 145 L125 110"
+            stroke="#ffffff"
+            stroke-width="12"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span>Task Manager</span>
+      </div>
  
         <h1
          

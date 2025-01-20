@@ -46,7 +46,7 @@ const Team = () => {
        <Spin spinning={isLoading}>
 
       <div className="items">
-        <Input.Search
+        <Input
           placeholder="Search"
           onChange={(value: any) => {
             dispatch(searchByname(value.target.value));
