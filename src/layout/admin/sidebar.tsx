@@ -129,6 +129,7 @@ const Sidebar = ({ select }: any) => {
           <li
             onClick={() => {
               navigate("/");
+              document.body.setAttribute("lang", 'true');
             }}
           >
             <svg

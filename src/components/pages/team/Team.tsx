@@ -54,7 +54,6 @@ const Team = () => {
         />
          
         <Button
-          type="primary"
           onClick={() => {
             setOpen(true);
           }}
@@ -131,10 +130,10 @@ const Team = () => {
                   <UpdateTeamModal data={item} />,
                 ]}
               >
-                <Space direction="vertical">
+                <Space direction="vertical" className="team-employee">
                   <AddEmployeeModal item={item} />
                   <div className="employees-items">
-                    <span>Employee Name:</span>
+                    <span>Employee:</span>
                     <Select
                       value={selectedEmployee}
                       onChange={(value) => setSelectedEmployee(value)}

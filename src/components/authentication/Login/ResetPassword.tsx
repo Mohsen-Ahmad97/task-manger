@@ -41,16 +41,19 @@ const ResetPassword = () => {
   const { Title } = Typography;
   return (
     <Spin spinning={isLoading}>
+      <div className="reset-paasword">
+
+      
       <Card>
         <Space direction="vertical" style={{ width: "90%" }}>
-          <Title
+          <h2
             style={{
               textAlign: "center",
               color: "blue",
             }}
           >
             {t("Reset Password")}
-          </Title>
+          </h2>
 
           <Form
             form={form}
@@ -155,6 +158,7 @@ const ResetPassword = () => {
           </Form>
         </Space>
       </Card>
+      </div>
     </Spin>
   );
 };

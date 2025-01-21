@@ -2,6 +2,12 @@
   .sidebar {
     width: 15%;
     padding: 30px;
+    .logo{
+      span{
+        display: none;
+      }
+    }
+   
     .items{padding: 0px;
  
     ul {
@@ -25,6 +31,7 @@
   }
   .sidebarcollapse{
     width: 15%;
+   
     .tems{
       padding: 0PX;
     ul{
@@ -48,9 +55,20 @@
 }
 }
 @media (min-width: 576px) and (max-width:920px) {
-
+  .sidebar{
+    .logo{
+      svg{
+        width: 30px;
+        height: 30px;
+      }
+      span{
+        font-size: 12px !important;
+      }
+     }
+  }
   .sidebarcollapse{
     width: 10% !important;
+    
     .tems{
       padding: 0PX;
     ul{

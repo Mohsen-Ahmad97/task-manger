@@ -1,0 +1,34 @@
+
+/* Default Theme */
+body[data-theme="light"] {
+    --background-color: #ffffff;
+    --text-color: #000000;
+ 
+  }
+  
+  /* Dark Theme */
+  body[data-theme="dark"] {
+    --background-color: #1a1a1a;
+  
+    .content-app{
+        background-color: black;
+        color: #ffffff;
+        
+    }
+    .sidebar{
+        background-color: black;
+        color: #ffffff;
+         .items{
+            background-color: black;
+         }
+    }
+    .navbar{
+        background-color: black;
+    }
+    .ant-modal-content{
+        background-color: black;
+        color: #ffffff;
+    }
+    
+  }
+  
