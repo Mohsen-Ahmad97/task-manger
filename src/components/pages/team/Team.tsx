@@ -21,6 +21,7 @@ import { useForm } from "antd/es/form/Form";
 import UpdateTeamModal from "./UpdateTeamModal";
 import AddEmployeeModal from "./AddEmployeeModal";
 import { PlusOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 const { Option } = Select;
 
@@ -28,9 +29,8 @@ const Team = () => {
   const dispatch = useDispatch();
   const [form] = useForm();
   const [open, setOpen] = useState(false);
-  const [asc, setAsc] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState("");
-
+   const { t } = useTranslation();
   const handleCancel = () => {
     setOpen(false);
   };
@@ -47,7 +47,7 @@ const Team = () => {
 
       <div className="items">
         <Input
-          placeholder="Search"
+          placeholder={t("search")}
           onChange={(value: any) => {
             dispatch(searchByname(value.target.value));
           }}
@@ -62,7 +62,7 @@ const Team = () => {
         </Button>
 
         <Modal
-          title="Add New Team"
+          title={t("addteam")}
           open={open}
           onCancel={handleCancel}
           footer={[
@@ -76,18 +76,18 @@ const Team = () => {
               }}
             >
               <Form.Item
-                label="Name Team"
+                label={t("Name")}
                 name="Name"
                 rules={[
                   {
                     required: true,
-                    message: "Please input team name",
+                    message: t("Please input team name"),
                   },
                 ]}
               >
-                <Input placeholder="Input Team Name" />
+                <Input placeholder={t("Input Team Name")} />
               </Form.Item>
-              <Button htmlType="submit">Add</Button>
+              <Button htmlType="submit">{t("add")}</Button>
             </Form>,
           ]}
         />
@@ -115,7 +115,7 @@ const Team = () => {
                     style={{ color: "red" }}
                     onClick={() => {
                       Modal.confirm({
-                        title: "Are you sure you want to delete?",
+                        title: t("Are you sure you want to delete?"),
                         okText: "Yes",
                         cancelText: "No",
                         okType: "danger",

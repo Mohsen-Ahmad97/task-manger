@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ select }: any) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [selected, setSelected] = useState("employee"); // Ensure the state name is correct
   console.log(select);
   return (
@@ -27,7 +29,7 @@ const Sidebar = ({ select }: any) => {
             stroke-linejoin="round"
           />
         </svg>
-        <span>Task Manager</span>
+        <span>{t("TaskManager")}</span>
       </div>
       <div className="items">
         <ul>
@@ -50,7 +52,7 @@ const Sidebar = ({ select }: any) => {
               {/* Body */}
               <path d="M6 20v-1c0-2.8 3.1-5 6-5s6 2.2 6 5v1H6z" />
             </svg>
-            <a>Employee</a>
+            <a>{t("Employees")}</a>
           </li>
           <li
             className={selected === "mission" ? "selected" : ""}
@@ -94,7 +96,7 @@ const Sidebar = ({ select }: any) => {
                 strokeLinejoin="round"
               />
             </svg>
-            <a>Mission</a>
+            <a>{t("Missions")}</a>
           </li>
           <li
             className={selected === "team" ? "selected" : ""}
@@ -120,7 +122,7 @@ const Sidebar = ({ select }: any) => {
               <circle cx="48" cy="24" r="5" />
               <path d="M43 39c0-2.7 2.2-5 5-5s5 2.2 5 5v3H43v-3z" />
             </svg>
-            <a>Team</a>
+            <a>{t("Teams")}</a>
           </li>
         </ul>
       </div>
@@ -169,7 +171,7 @@ const Sidebar = ({ select }: any) => {
                 strokeLinejoin="round"
               />
             </svg>
-            <a>Log-Out</a>
+            <a>{t("LOGOUT")}</a>
           </li>
         </ul>
       </div>

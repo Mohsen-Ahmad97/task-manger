@@ -12,8 +12,10 @@ import { Button, Input, Modal, Spin } from "antd";
 import AddMissionModal from "./AddMissionModal";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import UpdateMissionModal from "./UpdateMissionModal";
+import { useTranslation } from "react-i18next";
 
 const Mission = () => {
+  const {t}=useTranslation();
   const [open1, setopen1] = useState(false);
   const [open2, setopen2] = useState(false);
   const [id, setid] = useState("");
@@ -45,70 +47,71 @@ const Mission = () => {
     dispatch(filtermission(e));
   };
   const [SearchByFirstName, setSearchByFirstName] = useState("");
-  // const updatedatasource= Ascing ?[...payload]:[...payload].reverse();
+
   return (
     <Spin spinning={isloading}>
-      <div className="mission">
-        <div className="items">
-          <Input
-            placeholder="Search"
-            onChange={handelSearch}
-          />
-          <Button
- 
-            onClick={() => {
-              showModal1();
-            }}
-          >
-            <PlusOutlined />
-          </Button>
-      
-        </div>
-        <AddMissionModal
+      {payload ? (
+        <div className="mission">
+          <div className="items">
+            <Input placeholder={t("search")} onChange={handelSearch} />
+            <Button
+              onClick={() => {
+                showModal1();
+              }}
+            >
+              <PlusOutlined />
+            </Button>
+          </div>
+          <AddMissionModal
             open1={open1}
             handelcancel1={handelcancel1}
             setopen1={setopen1}
           />
-        <div className="mission-content">
-          <div className="card">
-            <div>Name</div>
-            <div>StartTime</div>
-            <div>EndTime</div>
-            <div>Actions</div>
-          </div>
-          {payload.map((item: any) => {
-            return (
-              <div className="card">
-                <div>{item.Name}</div>
-                <div>{item.StartTime}</div>
-                <div>{item.EndTime}</div>
-                <div className="actions-icons">
-                  <Button
-                
-                    onClick={() => {
-                      // console.log(record.Id);
-                      Modal.confirm({
-                        title: "Are You Sure deete",
-                        okText: "yes",
-                        cancelText: "No",
-                        okType: "danger",
-                        onOk: () => {
-                          dispatch(takeDeleteMission(item.Id));
-                        },
-                      });
-                    }}
-                    className="btn-delete"
-                  >
-                    <DeleteOutlined />
-                  </Button>
+          <div className="mission-content">
+            <div className="card">
+              <div>{t("Name")}</div>
+              <div>{t("StartTime")}</div>
+              <div>{t("EndTime")}</div>
+              <div>{t("Action")}</div>
+            </div>
+            {payload.map((item: any) => {
+              return (
+                <div className="card">
+                  <div>{item.Name}</div>
+                  <div>{item.StartTime}</div>
+                  <div>{item.EndTime}</div>
+                  <div className="actions-icons">
+                    <Button
+                      onClick={() => {
+                        // console.log(record.Id);
+                        Modal.confirm({
+                          title: t("Are You Sure delete?"),
+                          okText: t("yes"),
+                          cancelText: t("No"),
+                          okType: "danger",
+                          onOk: () => {
+                            dispatch(takeDeleteMission(item.Id));
+                          },
+                        });
+                      }}
+                      className="btn-delete"
+                    >
+                      <DeleteOutlined />
+                    </Button>
 
-                  <UpdateMissionModal record={item} />
+                    <UpdateMissionModal record={item} />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="no-data">
+        <h1>{t("no data") }</h1>
+        </div>
+
+      )}
 
       {/* <List
         grid={{ column: 3 }}

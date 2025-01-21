@@ -10,7 +10,7 @@ export class Mission {
         "https://task-follow-up.v2202305135856227727.ultrasrv.de/api/Mission"
       )
       .then(function (response) {
-        let result: mission = response.data;
+        let result: mission = response?.data;
         console.log("responsegetmission", result);
         return result;
       })
@@ -31,7 +31,7 @@ export class Mission {
         }
       )
       .then(function (response) {
-        let result: mission = response.data;
+        let result: mission = response?.data;
         console.log("responsegetmission", result);
         return result;
       })
@@ -53,7 +53,7 @@ export class Mission {
         }
       )
       .then(function (response) {
-        let result: mission = response.data;
+        let result: mission = response?.data;
         console.log("responseupdatetmission", result);
         return result;
       })
