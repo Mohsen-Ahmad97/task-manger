@@ -14,10 +14,12 @@ import { takeUpdatemission } from "../../../Redux/ActionCreator/ActionsCreator";
 import { useDispatch, useSelector } from "react-redux";
 import { mission } from "../../../models/General";
 import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
 
 const UpdateMissionModal = ({ record }: any) => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
+  const {t} =useTranslation();
   const dataFormat = "YYYY-MM-DD HH:mm A";
   const { employee } = useSelector((state: any) => state.getempl);
   const onFinish: FormProps<mission>["onFinish"] = async (values: mission) => {
@@ -103,7 +105,7 @@ const UpdateMissionModal = ({ record }: any) => {
       </Button>
       <Modal
         open={open}
-        title="update mission "
+        title={t("UpdateMission")}
         onCancel={() => {
           form.resetFields();
           setopen(false);
@@ -124,22 +126,22 @@ const UpdateMissionModal = ({ record }: any) => {
             }}
           >
             <Form.Item
-              label="MissionName"
+              label={t("Name")}
               name="Name"
               style={{ width: "100%" }}
               rules={[
-                { required: true, message: "Please input your MissionName" },
+                { required: true, message: t("Please input your Name") },
               ]}
               hasFeedback
             >
-              <Input placeholder="Please input your MissionName" />
+              <Input placeholder={t("Please input your Name")} />
             </Form.Item>
             <Form.Item
-              label="StartTime"
+              label={t("StartTime")}
               name="StartTime"
               style={{ width: "100%" }}
               rules={[
-                { required: true, message: "Please input  your StartTime" },
+                { required: true, message: t("Please input  your StartTime") },
               ]}
               hasFeedback
             >
@@ -149,11 +151,11 @@ const UpdateMissionModal = ({ record }: any) => {
               />
             </Form.Item>
             <Form.Item
-              label="EndTime"
+              label={t("EndTime")}
               name="EndTime"
               style={{ width: "100%" }}
               rules={[
-                { required: true, message: "Please input your  EndTime" },
+                { required: true, message: t("Please input your  EndTime") },
               ]}
               hasFeedback
             >
@@ -163,11 +165,11 @@ const UpdateMissionModal = ({ record }: any) => {
               />
             </Form.Item>
             <Form.Item
-              label="EmployeeIds"
+              label={t("Employees")}
               name="EmployeeIds"
               style={{ width: "100%" }}
               rules={[
-                { required: true, message: "Please input your EmployeeIds" },
+                { required: true, message: t("Please input your Employees") },
               ]}
               hasFeedback
             >
@@ -181,7 +183,7 @@ const UpdateMissionModal = ({ record }: any) => {
             </Form.Item>
             <Form.Item style={{ textAlign: "center" }}>
               <Button type="primary" htmlType="submit" style={{ width: "70%" }}>
-                Update mission
+                {t("Update")} 
               </Button>
             </Form.Item>
           </Form>,

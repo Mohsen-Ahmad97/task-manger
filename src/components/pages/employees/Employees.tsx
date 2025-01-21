@@ -1,9 +1,8 @@
-import { Button, Input, Modal, Space, Table, TableProps } from "antd";
+import { Button, Input, Modal, Table, TableProps } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { employees } from "../../../models/Modules";
 
@@ -16,10 +15,9 @@ import AddEmployeeModal from "./AddEmployeeModal";
 import { DeleteOutlined } from "@ant-design/icons";
 
 const Employees = () => {
-  // console.log("s",isSuccess)
+
 
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [SearchByFirstName, setSearchByFirstName] = useState("");
@@ -76,7 +74,7 @@ const Employees = () => {
               onClick={() => {
             
                 Modal.confirm({
-                  title: t("Are You Sure delete this employee ?"),
+                  title: t("Are You Sure delete this employee?"),
                   okText: t("yes"),
                   cancelText: t("No"),
                   className:'modal-delete',
@@ -100,7 +98,7 @@ const Employees = () => {
     <div className="content employee">
       <div className="items">
         <Input
-          placeholder="search"
+          placeholder={t("search")}
           onChange={(e) => {
             setSearchByFirstName(e.target.value);
           }}

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { takeAddmission } from "../../../Redux/ActionCreator/ActionsCreator";
 import { useSelector } from "react-redux";
 import { mission } from "../../../models/General";
+import { t } from "i18next";
 
 const AddMission = (props: any) => {
   const { employee } = useSelector((state: any) => state.getempl);
@@ -42,19 +43,19 @@ const AddMission = (props: any) => {
       autoComplete="off"
     >
       <Form.Item
-        label="MissionName"
+        label={t("Name")}
         name="Name"
         style={{ width: "100%" }}
-        rules={[{ required: true, message: "Please input your MissionName" }]}
+        rules={[{ required: true, message:t ("Please input your Name") }]}
         hasFeedback
       >
-        <Input placeholder="Please input your MissionName" />
+        <Input placeholder={t("Please input your Name")} />
       </Form.Item>
       <Form.Item
-        label="StartTime"
+        label={t("StartTime")}
         name="StartTime"
         style={{ width: "100%" }}
-        rules={[{ required: true, message: "Please input  your StartTime" }]}
+        rules={[{ required: true, message:t("Please input  your StartTime") }]}
         hasFeedback
       >
         <DatePicker
@@ -64,10 +65,10 @@ const AddMission = (props: any) => {
         />
       </Form.Item>
       <Form.Item
-        label="EndTime"
+        label={t("EndTime")}
         name="EndTime"
         style={{ width: "100%" }}
-        rules={[{ required: true, message: "Please input your  EndTime" }]}
+        rules={[{ required: true, message: t("Please input your  EndTime") }]}
         hasFeedback
       >
         <DatePicker
@@ -77,10 +78,10 @@ const AddMission = (props: any) => {
         />
       </Form.Item>
       <Form.Item
-        label="EmployeeIds"
+        label={t("Employees")}
         name="EmployeeIds"
         style={{ width: "100%" }}
-        rules={[{ required: true, message: "Please input your EmployeeIds" }]}
+        rules={[{ required: true, message: t("Please input your Employees") }]}
         hasFeedback
       >
         <Select>
@@ -91,7 +92,7 @@ const AddMission = (props: any) => {
       </Form.Item>
       <Form.Item style={{ textAlign: "center" }}>
         <Button type="primary" htmlType="submit" style={{ width: "70%" }}>
-          create mission
+          {t("create")}
         </Button>
       </Form.Item>
     </Form>

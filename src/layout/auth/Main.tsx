@@ -8,18 +8,18 @@ const Main = () => {
   const { message, isSuccess } = useSelector((state: any) => state.message);
   useEffect(() => {
 
-     if(!message ){
-     toast.dismiss()
-     }
-     else if (isSuccess && message) {
-      toast.success(message);
-    } else toast.error(message);
-  },[isSuccess,message]);
+    //  if(!message ){
+    //  toast.dismiss()
+    //  }
+    //  else if (isSuccess && message) {
+    //   toast.success(message);
+    // } else toast.error(message);
+  },[]);
 
   return (
     <div className="main" >
       <Outlet />
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </div>
   );
 };
