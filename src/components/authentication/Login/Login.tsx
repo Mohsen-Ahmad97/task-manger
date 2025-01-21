@@ -1,13 +1,10 @@
 import {
-  Alert,
   Button,
   Card,
   Form,
   FormProps,
   Input,
-  Space,
   Spin,
-  Typography,
 } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { useDispatch } from "react-redux";
@@ -26,10 +23,10 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading, isSuccess} = useSelector(
-    (state: any) => state.log
+    (state: any) => state?.log
   );
 
-const {Title}=Typography
+
   useEffect(() => {
     if (isSuccess) {
       navigate("/admin");
@@ -116,24 +113,24 @@ const {Title}=Typography
           >
             <Input.Password placeholder={t("Please input your password")} />
           </Form.Item>
-          <Form.Item style={{ textAlign: "center" }}>
+          <Form.Item >
             <div className="create-account">
-            <Button
-              type="link"
+            <span
+             
               onClick={() => {
                 dispatch(takeInformationFrogetPassword());
               }}
             >
               {t("Forget Password ?")}
-              <Button
-                type="link"
+              <span
+                
                 onClick={() => {
                   navigate("/Login/resetPassword");
                 }}
               >
                 {t("Click Here")}
-              </Button>
-            </Button>
+              </span>
+            </span>
             <Button
                 type="link"
                 onClick={() => {

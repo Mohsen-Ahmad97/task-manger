@@ -18,7 +18,7 @@ const AddEmployeeModal = (props: any) => {
   console.log(employee);
 
   return (
-    <Space direction="horizontal" >
+    <Space direction="horizontal"  className="action">
       <Button
       
         onClick={() => {
@@ -28,7 +28,7 @@ const AddEmployeeModal = (props: any) => {
   <PlusOutlined/>
       </Button>
       <Button
-        style={{ color: "red", marginLeft: "30px " }}
+  
         onClick={() => {
           setopen1(true);
         }}
@@ -42,10 +42,13 @@ const AddEmployeeModal = (props: any) => {
           setopen1(false);
         }}
         footer={[
-          <Space className="team-delete">
-            <Typography.Text>Select Employee </Typography.Text>
+          <div className="team-delete">
+            <div className="select">
+
+       
+            <span>Select Employee: </span>
             <Select
-              style={{ width: "100px" }}
+
               onChange={(value: any) => {
                 setid(value);
               }}
@@ -58,6 +61,7 @@ const AddEmployeeModal = (props: any) => {
                 );
               })}
             </Select>
+            </div>
             <Button
               onClick={() => {
                 dispatch(
@@ -70,7 +74,7 @@ const AddEmployeeModal = (props: any) => {
             >
               delete
             </Button>
-          </Space>,
+          </div>,
         ]}
       />
 

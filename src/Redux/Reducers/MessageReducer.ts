@@ -35,7 +35,6 @@ const initial: state = {
 };
 
 const MessageReducer = (state = initial, action: any) => {
-  console.log(action);
   switch (action.type) {
     case DATA_REGISTER:
       return {
@@ -47,12 +46,14 @@ const MessageReducer = (state = initial, action: any) => {
       return {
         ...state,
         isSuccess: action.response.Code === 200,
+        message: action.response.Message,
       };
     case DATA_RESENDCODE:
       return {
         ...state,
         message: action.data.Message,
         isSuccess: action.data.Code === 200,
+        
         
       };
     case DATA_COMPLETE_REGISTER:

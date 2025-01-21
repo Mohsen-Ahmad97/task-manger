@@ -2,4 +2,11 @@
 .menu{
     display: none;
 }
+.navbar{
+ .actions{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+ }
+}
 }

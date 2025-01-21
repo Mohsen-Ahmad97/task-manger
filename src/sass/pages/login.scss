@@ -8,8 +8,12 @@
     .create-account{
         width: 100%;
         display: flex;
-        justify-content: center;
+        // justify-content: center;
         align-items: center;
+        justify-content: space-between;
+        span{
+          color: #1677ff;
+        }
 
     }
     .logo{
